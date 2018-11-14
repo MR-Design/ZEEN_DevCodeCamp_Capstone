@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_ZEEN", "_ZEEN\_ZEEN.csproj", "{27D285F2-7BB7-45F6-B012-61C9F0DACEDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27D285F2-7BB7-45F6-B012-61C9F0DACEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D285F2-7BB7-45F6-B012-61C9F0DACEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D285F2-7BB7-45F6-B012-61C9F0DACEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D285F2-7BB7-45F6-B012-61C9F0DACEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27EBDBE1-2442-40A4-BD7D-6544825F6E94}
+	EndGlobalSection
+EndGlobal
