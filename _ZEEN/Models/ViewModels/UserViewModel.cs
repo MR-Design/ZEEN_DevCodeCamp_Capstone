@@ -10,7 +10,7 @@ namespace _ZEEN.Models.ViewModels
         public RegularUser user { get; set; }
         public List<RegularUser> users { get; set; }
         public Sale sale { get; set; }
-        public List<RegularUser> sales { get; set; }
+        public List<Sale> sales { get; set; }
 
     }
 }

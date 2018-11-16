@@ -1,4 +1,4 @@
-﻿@model IEnumerable<_ZEEN.Models.Sale>
+﻿ @model _ZEEN.Models.ViewModels.SellerViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,29 +10,33 @@
     <a asp-action="Create" asp-controller="Sales">Sell on <strong>ZEEN </strong></a>
 </div>
 <div class="container body-content">
-    @foreach (var item in Model)
+    @foreach (var item in Model.sales)
     {
         <div class="col-xs-6 col-sm-4">
 
 
 
             <div class="card mb-3">
-                <h3 class="card-header">
-                    Seller Profile Here
-                </h3>
-                <div class="card-body">
-                    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Detail)</h5>
-                </div>
+                <a asp-action="Details" asp-route-id="@item.Id" style="color:black">
+
+                    <h3 class="card-header">
+                        @Html.DisplayFor(modelItem => item.Detail)
+                    </h3>
+
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                    </div>
+                </a>
                 <a asp-action="Details" asp-route-id="@item.Id">
                     <img style="height: 200px; width: 100%; display: block;" src="https://di2ponv0v5otw.cloudfront.net/posts/2018/10/05/5bb7f7ed035cf1ffa79cbfee/m_5bb7f831409c1558227aa607.jpg" alt="Card image">
                 </a>
-                    <div class="card-body">
-                    <a class="card-link">
+                <div class="card-body">
+                    <a class="card-link" style="font-weight:900;">
                         $ @Html.DisplayFor(modelItem => item.UnitPrice)
                     </a>
                     <a class="card-link">@Html.DisplayFor(modelItem => item.Gender)</a>
                     <a class="card-link">
-                        @Html.DisplayNameFor(model => model.Size)
+                        @Html.DisplayNameFor(model => model.sale.Size)
                         @Html.DisplayFor(modelItem => item.Size)
                     </a> |
                     <a class="card-link">@Html.DisplayFor(modelItem => item.Brand)</a>
@@ -42,9 +46,8 @@
                     Posted X Days ago
                 </div>
 
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" style="font-weight:bold;">Update</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Remove</a>
             </div>
 
         </div>

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using _ZEEN.Data;
 using _ZEEN.Models;
 using Microsoft.AspNet.Identity;
+using _ZEEN.Models.ViewModels;
 
 namespace _ZEEN.Controllers
 {
@@ -21,14 +22,22 @@ namespace _ZEEN.Controllers
         }
 
         // GET: Sales
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            return View(await _context.Sales.ToListAsync());
+            SellerViewModel view = new SellerViewModel();
+            List<Sale> sales = new List<Sale>();
+
+            view.sales = _context.Sales.ToList();
+            return View(view);
         }
 
         // GET: Sales/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+           SellerViewModel view = new SellerViewModel();
+            List<Sale> sales = new List<Sale>();
+            //I need to fix my view
+         
             if (id == null)
             {
                 return NotFound();
@@ -41,7 +50,7 @@ namespace _ZEEN.Controllers
                 return NotFound();
             }
 
-            return View(sale);
+            return View(view);
         }
 
         // GET: Sales/Create
@@ -57,6 +66,7 @@ namespace _ZEEN.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Sale sale)
         {
+
             var currentUser = User.Identity.GetUserId();
             Sale sales = _context.Sales.Where(s => s.SaleID == currentUser).SingleOrDefault();
            // sales.SaleID = currentUser;
