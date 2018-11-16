@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _ZEEN.Data;
 
 namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181116042228_adpics")]
+    partial class adpics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,19 +76,15 @@ namespace _ZEEN.Migrations
 
                     b.Property<string>("Gender");
 
-                    b.Property<int>("Quantity");
+                    b.Property<string>("ImagePath");
 
-                    b.Property<string>("SaleID");
+                    b.Property<int>("Quantity");
 
                     b.Property<int>("Size");
 
                     b.Property<double?>("UnitPrice");
 
-                    b.Property<int?>("regularUserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("regularUserId");
 
                     b.ToTable("Sales");
                 });
@@ -276,13 +274,6 @@ namespace _ZEEN.Migrations
                     b.HasOne("_ZEEN.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("_ZEEN.Models.Sale", b =>
-                {
-                    b.HasOne("_ZEEN.Models.RegularUser", "regularUser")
-                        .WithMany()
-                        .HasForeignKey("regularUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,12 +12,9 @@ namespace _ZEEN.Models
         [Key]
         public int Id { get; set; }
 
-        public string ImagePath { get; set; }
-
-
-
-
-
+        [ForeignKey("RegularUser")]
+        public string SaleID { get; set; }
+        public RegularUser regularUser { get; set; }
         [Display(Name = "What are you selling")]
         public string Detail { get; set; }
 

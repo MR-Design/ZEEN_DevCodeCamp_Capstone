@@ -16,6 +16,9 @@ namespace _ZEEN.Models
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
+        public byte[] Picture { get; set; }
+
+
 
         [Display(Name = "Select Gender")]
         public string Gender { get; set; }

@@ -25,6 +25,10 @@ namespace _ZEEN.Controllers
             _context = context;
             he = e;
         }
+
+
+
+
         public IActionResult ShowFields(string fullname, IFormFile pic)
         {
             ViewData["fname"] = fullname;
@@ -83,8 +87,9 @@ namespace _ZEEN.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Image,Gender,UserName,Bio,WebSite,FirstName,LastName,City,State,ZipCode")] RegularUser regularUser)
+        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Image,Gender,UserName,Bio,WebSite,FirstName,LastName,City,State,ZipCode")] RegularUser regularUser, IFormFile picture)
         {
+           
             RegularUser rUser = _context.RegularUsers.Where(s => s.ApplicationUserId == User.Identity.GetUserId().ToString()).SingleOrDefault();
             regularUser.ApplicationUserId = User.Identity.GetUserId();
             if (ModelState.IsValid)
@@ -92,6 +97,14 @@ namespace _ZEEN.Controllers
                 _context.Add(regularUser);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            }
+            if (picture != null)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    await picture.CopyToAsync(stream);
+                    regularUser.Picture = stream.ToArray();
+                }
             }
 
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", regularUser.ApplicationUserId);
@@ -128,7 +141,6 @@ namespace _ZEEN.Controllers
 
             };
             view.user = thisUser;
-
             view.user.UserName = collection["user.UserName"];
             view.user.LastName = collection["user.LastName"];
             view.user.FirstName = collection["user.FirstName"];
@@ -137,12 +149,7 @@ namespace _ZEEN.Controllers
             view.user.City = collection["user.City"];
             view.user.State = collection["user.State"];
             view.user.ZipCode = Int32.Parse(collection["user.ZipCode"]);
-
-
-
-
             _context.SaveChanges();
-
             return RedirectToAction("UserDetails", "RegularUsers");
         }
 
