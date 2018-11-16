@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace _ZEEN.Areas.Identity.Pages.Account
 {
+
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -66,6 +67,8 @@ namespace _ZEEN.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
+            
+
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -83,7 +86,9 @@ namespace _ZEEN.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    //return LocalRedirect(returnUrl);
+                    return RedirectToAction("Create", "RegularUsers");
+
                 }
                 foreach (var error in result.Errors)
                 {

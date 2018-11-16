@@ -7,5 +7,6 @@ namespace _ZEEN.Models.ViewModels
 {
     public class BuyerViewModel
     {
+
     }
 }

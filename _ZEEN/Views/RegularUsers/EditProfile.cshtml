@@ -1,0 +1,74 @@
+﻿@model _ZEEN.Models.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>RegularUser</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProfile">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="user.Id" />
+
+
+
+            <div class="form-group">
+                <label asp-for="user.UserName" class="control-label"></label>
+                <input asp-for="user.UserName" class="form-control" />
+                <span asp-validation-for="user.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.FirstName" class="control-label"></label>
+                <input asp-for="user.FirstName" class="form-control" />
+                <span asp-validation-for="user.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.LastName" class="control-label"></label>
+                <input asp-for="user.LastName" class="form-control" />
+                <span asp-validation-for="user.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.WebSite" class="control-label"></label>
+                <textarea asp-for="user.WebSite" class="form-control"></textarea>
+                <span asp-validation-for="user.WebSite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.Bio" class="control-label"></label>
+                <input asp-for="user.Bio" class="form-control" />
+                <span asp-validation-for="user.Bio" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="user.City" class="control-label"></label>
+                <input asp-for="user.City" class="form-control" />
+                <span asp-validation-for="user.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.State" class="control-label"></label>
+                <input asp-for="user.State" class="form-control" />
+                <span asp-validation-for="user.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.ZipCode" class="control-label"></label>
+                <input asp-for="user.ZipCode" class="form-control" />
+                <span asp-validation-for="user.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

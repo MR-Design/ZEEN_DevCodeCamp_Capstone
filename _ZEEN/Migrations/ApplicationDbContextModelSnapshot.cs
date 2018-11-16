@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _ZEEN.Data;
 
-namespace _ZEEN.Data.Migrations
+namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -21,20 +21,28 @@ namespace _ZEEN.Data.Migrations
 
             modelBuilder.Entity("_ZEEN.Models.RegularUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApplicationUserId");
 
+                    b.Property<string>("Bio")
+                        .HasMaxLength(10000);
+
                     b.Property<string>("City");
 
-                    b.Property<string>("Email");
-
                     b.Property<string>("FirstName");
+
+                    b.Property<string>("Gender");
 
                     b.Property<string>("LastName");
 
                     b.Property<string>("State");
+
+                    b.Property<string>("UserName");
+
+                    b.Property<string>("WebSite");
 
                     b.Property<int>("ZipCode");
 
@@ -61,6 +69,8 @@ namespace _ZEEN.Data.Migrations
 
                     b.Property<string>("Discription")
                         .HasMaxLength(10000);
+
+                    b.Property<string>("Gender");
 
                     b.Property<string>("ImagePath");
 

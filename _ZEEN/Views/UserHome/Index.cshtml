@@ -1,0 +1,43 @@
+﻿@model _ZEEN.Models.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "UserHome";
+}
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>RegularUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.WebSite)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.WebSite)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.Bio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.Bio)
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.user.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

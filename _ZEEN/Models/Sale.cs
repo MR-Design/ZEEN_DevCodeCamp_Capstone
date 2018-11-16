@@ -10,7 +10,11 @@ namespace _ZEEN.Models
     {
         [Key]
         public int Id { get; set; }
+
         public string ImagePath { get; set; }
+
+
+
 
 
         [Display(Name = "What are you selling")]
@@ -22,6 +26,8 @@ namespace _ZEEN.Models
         [Display(Name = "Product Category")]
         public string Category { get; set; }
 
+        [Display(Name = "Select Gender")]
+        public string Gender { get; set; }
         public int Quantity { get; set; }
         public int Size { get; set; }
         public string Brand { get; set; }

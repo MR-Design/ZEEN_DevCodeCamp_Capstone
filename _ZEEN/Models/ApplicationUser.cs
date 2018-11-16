@@ -10,5 +10,6 @@ namespace _ZEEN.Models
     public class ApplicationUser : IdentityUser
     {
         // FK to a User or in the future Admin 
+
     }
 }

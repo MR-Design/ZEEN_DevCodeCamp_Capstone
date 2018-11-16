@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - _ZEEN</title>
+    <title>@ViewData["Title"] ZEEN</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,13 +26,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">_ZEEN</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ZEEN</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
@@ -48,7 +46,7 @@
             <div class="alert alert-dismissible alert-info">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <h4>Footer!</h4>
-                <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+                <p>.<a href="#" class="alert-link"></a>.</p>
             </div>        </footer>
     </div>
 
@@ -74,5 +72,6 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

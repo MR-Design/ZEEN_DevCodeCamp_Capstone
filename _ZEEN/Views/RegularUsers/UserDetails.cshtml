@@ -1,0 +1,86 @@
+﻿@model _ZEEN.Models.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+
+
+
+    <hr />
+    <img src="http://tonypratt.com/wp-content/uploads/Maria-Cassandra-8.31.2010_04811.jpg" alt="Avatar">
+    <style>
+
+        img {
+            border-radius: 50%;
+            width :150px; height: 150px;
+        }
+    </style>
+    <dl class="dl-horizontal">
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.Bio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.Bio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.WebSite)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.WebSite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user.ZipCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.ZipCode)
+        </dd>
+    </dl>
+</div>
+
+<div>
+
+    <a asp-action="EditProfile" asp-controller="RegularUsers"class="btn btn-default">Edit</a> 
+</div>
