@@ -15,10 +15,11 @@ namespace _ZEEN.Models
         [ForeignKey("RegularUser")]
         public string SaleID { get; set; }
         public RegularUser regularUser { get; set; }
-        [Display(Name = "What are you selling")]
+
+        [Display(Name = "Title")]
         public string Detail { get; set; }
 
-        [StringLength(10000), Display(Name = "Describe it"), DataType(DataType.MultilineText)]
+        [StringLength(10000), Display(Name = "Description"), DataType(DataType.MultilineText)]
         public string Discription { get; set; }
 
         [Display(Name = "Product Category")]

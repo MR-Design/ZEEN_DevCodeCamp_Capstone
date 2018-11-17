@@ -32,23 +32,16 @@ namespace _ZEEN.Controllers
         }
 
         // GET: Sales/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id, SellerViewModel view)
         {
-           SellerViewModel view = new SellerViewModel();
-            List<Sale> sales = new List<Sale>();
-            //I need to fix my view
+             view = new SellerViewModel()
+            {
+                sale = new Sale()
+            };
+            view.sale = _context.Sales.Where(s=>s.Id ==id).SingleOrDefault();
          
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var sale = await _context.Sales
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (sale == null)
-            {
-                return NotFound();
-            }
+          
 
             return View(view);
         }
@@ -68,8 +61,9 @@ namespace _ZEEN.Controllers
         {
 
             var currentUser = User.Identity.GetUserId();
-            Sale sales = _context.Sales.Where(s => s.SaleID == currentUser).SingleOrDefault();
-           // sales.SaleID = currentUser;
+            Sale seller = _context.Sales.Where(s => s.SaleID == currentUser).SingleOrDefault();
+
+            sale.SaleID = currentUser;
             if (ModelState.IsValid)
             {
                 _context.Add(sale);
@@ -82,6 +76,7 @@ namespace _ZEEN.Controllers
         // GET: Sales/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
