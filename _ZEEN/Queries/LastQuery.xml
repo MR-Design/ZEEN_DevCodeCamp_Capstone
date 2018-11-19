@@ -1,0 +1,16 @@
+﻿<Query id="LastQuery" name="">
+  <Description />
+  <Columns>
+    <Column caption="Sale Product Category" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Sale.Category" />
+    </Column>
+    <Column caption="Sale Price" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Sale.UnitPrice" />
+    </Column>
+    <Column caption="Sale Brand" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Sale.Brand" />
+    </Column>
+  </Columns>
+  <JustSortedColumns />
+  <Conditions linking="All" />
+</Query>

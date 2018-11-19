@@ -9,6 +9,9 @@ using _ZEEN.Data;
 using _ZEEN.Models;
 using Microsoft.AspNet.Identity;
 using _ZEEN.Models.ViewModels;
+using Korzh.EasyQuery.Linq;
+
+
 
 namespace _ZEEN.Controllers
 {
@@ -21,13 +24,19 @@ namespace _ZEEN.Controllers
             _context = context;
         }
 
+
+      
+
         // GET: Sales
-        public  IActionResult Index()
+        public  IActionResult Index(string searchString)
         {
             SellerViewModel view = new SellerViewModel();
             List<Sale> sales = new List<Sale>();
-
             view.sales = _context.Sales.ToList();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                view.sales = _context.Sales.FullTextSearchQuery(searchString).ToList();
+            }
             return View(view);
         }
 

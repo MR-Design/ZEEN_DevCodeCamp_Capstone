@@ -1,14 +1,34 @@
-﻿ @model _ZEEN.Models.ViewModels.SellerViewModel
+﻿@model _ZEEN.Models.ViewModels.SellerViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
+<h5 class="right">
 
-<div class="alert alert-dismissible alert-success">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <a asp-action="Create" asp-controller="Sales">Sell on <strong>ZEEN </strong></a>
-</div>
+</h5>
+
+<nav class="navbar navbar-default">
+
+
+    <form asp-controller="Sales" asp-action="Index" class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" name="SearchString" placeholder="Search Listings">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+    </form>
+
+
+</nav>
+
+
+
+
+
+
+
+
 <div class="container body-content">
     @foreach (var item in Model.sales)
     {
