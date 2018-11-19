@@ -74,6 +74,33 @@ namespace _ZEEN.Controllers
             return View(view);
         }
 
+        // GET: RegularUsers/Details/5
+        public IActionResult Profiles(string id)
+        {
+           
+            UserViewModel view = new UserViewModel()
+            {
+                user = new RegularUser()
+
+            };
+            RegularUser RegularUsers = _context.RegularUsers.Where(s => s.ApplicationUserId == id).SingleOrDefault();
+
+
+            view.user = RegularUsers;
+            //id = view.user.ApplicationUserId;
+            if (id == null)
+            {
+                return NotFound();
+            }
+         
+            if (view.user == null)
+            {
+                return NotFound();
+            }
+
+            return View(view);
+        }
+
         // GET: RegularUsers/Create
         public IActionResult Create()
         {
