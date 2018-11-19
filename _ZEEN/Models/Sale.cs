@@ -12,9 +12,14 @@ namespace _ZEEN.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("RegularUser")]
+        //[ForeignKey("RegularUser")]
+        //public int RegularUserID { get; set; }
+        //public RegularUser regularUser { get; set; }
+
+
+        [ForeignKey("ApplicationUser")]
         public string SaleID { get; set; }
-        public RegularUser regularUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         [Display(Name = "Title")]
         public string Detail { get; set; }

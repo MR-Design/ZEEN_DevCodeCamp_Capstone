@@ -82,11 +82,9 @@ namespace _ZEEN.Migrations
 
                     b.Property<double?>("UnitPrice");
 
-                    b.Property<int?>("regularUserId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("regularUserId");
+                    b.HasIndex("SaleID");
 
                     b.ToTable("Sales");
                 });
@@ -280,9 +278,9 @@ namespace _ZEEN.Migrations
 
             modelBuilder.Entity("_ZEEN.Models.Sale", b =>
                 {
-                    b.HasOne("_ZEEN.Models.RegularUser", "regularUser")
+                    b.HasOne("_ZEEN.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("regularUserId");
+                        .HasForeignKey("SaleID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using _ZEEN.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Korzh.EasyQuery.AspNetCore;
 
 namespace _ZEEN
 {
@@ -41,6 +42,8 @@ namespace _ZEEN
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddEasyQuery();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

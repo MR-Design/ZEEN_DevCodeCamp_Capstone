@@ -10,8 +10,8 @@ using _ZEEN.Data;
 namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181116142258_addFKinSales")]
-    partial class addFKinSales
+    [Migration("20181119153444_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,17 +78,19 @@ namespace _ZEEN.Migrations
 
                     b.Property<int>("Quantity");
 
-                    b.Property<int>("SaleID");
+                    b.Property<int>("RegularUserID");
+
+                    b.Property<string>("SaleID");
 
                     b.Property<int>("Size");
 
                     b.Property<double?>("UnitPrice");
 
-                    b.Property<int?>("regularUserId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("regularUserId");
+                    b.HasIndex("RegularUserID");
+
+                    b.HasIndex("SaleID");
 
                     b.ToTable("Sales");
                 });
@@ -284,7 +286,12 @@ namespace _ZEEN.Migrations
                 {
                     b.HasOne("_ZEEN.Models.RegularUser", "regularUser")
                         .WithMany()
-                        .HasForeignKey("regularUserId");
+                        .HasForeignKey("RegularUserID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("_ZEEN.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("SaleID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

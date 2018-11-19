@@ -34,14 +34,22 @@ namespace _ZEEN.Controllers
         // GET: Sales/Details/5
         public IActionResult Details(int? id, SellerViewModel view)
         {
-             view = new SellerViewModel()
+           // var currentUser = User.Identity.GetUserId();
+
+            view = new SellerViewModel()
             {
-                sale = new Sale()
+                sale = new Sale(),
+                user = new RegularUser()
             };
             view.sale = _context.Sales.Where(s=>s.Id ==id).SingleOrDefault();
-         
 
-          
+            //I am trying  to  Link SaleID and RegularuserID I  wanna  show who posted the sale
+            // view.user = _context.RegularUsers.Where(s => s.UserName == view.user.UserName).SingleOrDefault();
+            view.user = _context.RegularUsers.Where(s => s.ApplicationUserId == view.sale.SaleID).SingleOrDefault();
+
+
+
+
 
             return View(view);
         }
@@ -59,15 +67,17 @@ namespace _ZEEN.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Sale sale)
         {
-
             var currentUser = User.Identity.GetUserId();
-            Sale seller = _context.Sales.Where(s => s.SaleID == currentUser).SingleOrDefault();
+
+            // Sale seller = _context.Sales.Where(s => s.SaleID == currentUser).SingleOrDefault();
 
             sale.SaleID = currentUser;
             if (ModelState.IsValid)
             {
                 _context.Add(sale);
                 await _context.SaveChangesAsync();
+
+              
                 return RedirectToAction(nameof(Index));
             }
             return View(sale);
