@@ -13,6 +13,8 @@
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="4.4.0" />
     <PackageReference Include="Korzh.EasyQuery.Linq" Version="4.4.0" />
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.0" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
   </ItemGroup>
@@ -20,6 +22,7 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\lib\signalr\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -25,9 +25,28 @@ namespace _ZEEN.Controllers
             _context = context;
             he = e;
         }
+        [HttpPost("UploadFiles")]
+        public async Task<IActionResult> Post(List<IFormFile> files)
+        {
+            long size = files.Sum(f => f.Length);
+            // full path to file in temp location
+            var filePath = Path.GetTempFileName();
 
+            foreach (var formFile in files)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
 
-
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+            return Ok(new { count = files.Count, size, filePath });
+        }
 
         public IActionResult ShowFields(string fullname, IFormFile pic)
         {
@@ -40,14 +59,12 @@ namespace _ZEEN.Controllers
             }
             return View();
         }
-
         // GET: RegularUsers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.RegularUsers.Include(r => r.ApplicationUser);
             return View(await applicationDbContext.ToListAsync());
         }
-
         // GET: RegularUsers/Details/5
         public async Task<IActionResult> UserDetails()
         {
@@ -58,11 +75,7 @@ namespace _ZEEN.Controllers
             };
             var currentUser = User.Identity.GetUserId();
             RegularUser RegularUsers = _context.RegularUsers.Where(s => s.ApplicationUserId == currentUser).SingleOrDefault();
-         
-            
             view.user = RegularUsers;
-
-
             var regularUser = await _context.RegularUsers
                 .Include(r => r.ApplicationUser)
                 .FirstOrDefaultAsync(m => m.ApplicationUserId == currentUser);
@@ -70,10 +83,8 @@ namespace _ZEEN.Controllers
             {
                 return NotFound();
             }
-
             return View(view);
         }
-
         // GET: RegularUsers/Details/5
         public IActionResult Profiles(string id)
         {
@@ -114,25 +125,18 @@ namespace _ZEEN.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Image,Gender,UserName,Bio,WebSite,FirstName,LastName,City,State,ZipCode")] RegularUser regularUser, IFormFile picture)
+        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Image,Gender,UserName,Bio,WebSite,FirstName,LastName,City,State,ZipCode")] RegularUser regularUser)
         {
-           
-            RegularUser rUser = _context.RegularUsers.Where(s => s.ApplicationUserId == User.Identity.GetUserId().ToString()).SingleOrDefault();
+
+                RegularUser rUser = _context.RegularUsers.Where(s => s.ApplicationUserId == User.Identity.GetUserId().ToString()).SingleOrDefault();
             regularUser.ApplicationUserId = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 _context.Add(regularUser);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Sales");
             }
-            if (picture != null)
-            {
-                using (var stream = new MemoryStream())
-                {
-                    await picture.CopyToAsync(stream);
-                    regularUser.Picture = stream.ToArray();
-                }
-            }
+
 
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", regularUser.ApplicationUserId);
             return View(regularUser);

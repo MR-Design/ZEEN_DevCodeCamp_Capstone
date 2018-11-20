@@ -28,7 +28,7 @@ namespace _ZEEN.Controllers
       
 
         // GET: Sales
-        public  IActionResult Index(string searchString)
+        public  IActionResult Index(string searchString, string Men, string Woman, string Clothing, string Shoes, string Jewelry,string Watches)
         {
             SellerViewModel view = new SellerViewModel();
             List<Sale> sales = new List<Sale>();
@@ -36,6 +36,30 @@ namespace _ZEEN.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 view.sales = _context.Sales.FullTextSearchQuery(searchString).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Men))
+            {
+                view.sales = _context.Sales.Where(s => s.Gender == Men).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Woman))
+            {
+                view.sales = _context.Sales.Where(s=>s.Gender ==Woman).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Clothing))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Clothing).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Shoes))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Shoes).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Jewelry))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Jewelry).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Watches))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Watches).ToList();
             }
             return View(view);
         }

@@ -17,7 +17,28 @@
             <input type="text" class="form-control" name="SearchString" placeholder="Search Listings">
         </div>
         <button type="submit" class="btn btn-default">Search</button>
+
+
+
+        <div class="btn-group">
+            <a class="btn btn-default dropdown-toggle bottom" data-toggle="dropdown" aria-expanded="false">
+                All
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a asp-controller="Sales" asp-action="Index" name="Men"> Men</a></li>
+                <li><a asp-controller="Sales" asp-action="Index" name="Woman"> Woman</a></li>
+                <li><a asp-controller="Sales" asp-action="Index" name="Clothing"> Clothing</a></li>
+                <li><a asp-controller="Sales" asp-action="Index" name="Shoes"> Shoes</a></li>
+                <li><a asp-controller="Sales" asp-action="Index" name="Jewelry"> Jewelry</a></li>
+                <li><a asp-controller="Sales" asp-action="Index" name="Watches"> Watches</a></li>
+
+            </ul>
+        </div>
     </form>
+    
+     
+   
 
 
 </nav>

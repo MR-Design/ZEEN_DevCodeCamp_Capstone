@@ -15,10 +15,7 @@ namespace _ZEEN.Models
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-
-        public byte[] Picture { get; set; }
-
-
+        public byte[] AvatarImage { get; set; }
 
         [Display(Name = "Select Gender")]
         public string Gender { get; set; }
