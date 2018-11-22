@@ -11,7 +11,10 @@
                 <button type="submit" asp-action="UserDetails" asp-controller="RegularUsers" class="btn btn-link navbar-btn navbar-link">My Profile</button>
             </li>
             <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <button type="submit" asp-action="Index" asp-controller="Messages" class="btn btn-link navbar-btn navbar-link">Messages</button>
+            </li>
+            <li>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome @UserManager.GetUserName(User)!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>

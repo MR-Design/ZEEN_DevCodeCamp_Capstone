@@ -1,0 +1,39 @@
+﻿@model _ZEEN.Models.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+
+
+<br />
+<br />
+
+@foreach (var item in Model.messages)
+{
+
+    <div class="form-group">
+        <label for="textArea" class="col-lg-2 control-label">
+            @Html.DisplayNameFor(model => model.message.Message)
+        </label>
+        <div class="col-lg-10">
+            <textarea class="form-control" rows="3" id="textArea"> @Html.DisplayFor(modelItem => item.Message)</textarea>
+            <span class="help-block">@DateTime.Now</span>
+        </div>
+    </div>
+
+
+    <tr>
+       
+
+        <td>
+            @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+    </tr>
+}
+
+

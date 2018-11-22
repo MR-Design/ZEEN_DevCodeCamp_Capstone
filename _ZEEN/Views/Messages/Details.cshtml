@@ -1,0 +1,21 @@
+﻿@model _ZEEN.Models.Messages
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>Messages</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+      
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -13,6 +13,7 @@ using _ZEEN.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Korzh.EasyQuery.AspNetCore;
+using _ZEEN.Models;
 
 namespace _ZEEN
 {
@@ -43,6 +44,7 @@ namespace _ZEEN
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddEasyQuery();
+            services.AddSignalR();
 
         }
 
@@ -63,7 +65,10 @@ namespace _ZEEN
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
             app.UseAuthentication();
 
             app.UseMvc(routes =>

@@ -91,10 +91,12 @@ namespace _ZEEN.Controllers
            
             UserViewModel view = new UserViewModel()
             {
+                message = new Messages(),
                 user = new RegularUser()
 
             };
             RegularUser RegularUsers = _context.RegularUsers.Where(s => s.ApplicationUserId == id).SingleOrDefault();
+
 
 
             view.user = RegularUsers;
@@ -110,6 +112,28 @@ namespace _ZEEN.Controllers
             }
 
             return View(view);
+        }
+        [HttpPost]
+        public IActionResult Profiles(UserViewModel view)
+        {
+            //view = new UserViewModel()
+            //{
+            //    message = new Messages()
+            //};
+            //view.message = messages; // not good
+
+            var currentUser = User.Identity.GetUserId();
+            view.message.FromId = currentUser;
+
+            // view.message.To = _context.RegularUsers.Where(x => x.UserName ==).SingleOrDefault();
+            if (ModelState.IsValid)
+            {
+                 _context.Messages.Add(view.message);
+
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction();
         }
 
         // GET: RegularUsers/Create

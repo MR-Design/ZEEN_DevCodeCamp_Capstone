@@ -12,5 +12,8 @@ namespace _ZEEN.Models.ViewModels
         public Sale sale { get; set; }
         public List<Sale> sales { get; set; }
 
+        public Messages message { get; set; }
+        public List<Messages> messages { get; set; }
+
     }
 }

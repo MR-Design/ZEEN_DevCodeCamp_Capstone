@@ -23,11 +23,7 @@ namespace _ZEEN.Controllers
         {
             _context = context;
         }
-
-
-      
-
-        // GET: Sales
+        // GET: User Index Page Based on Search and Filtring
         public  IActionResult Index(string searchString, string Men, string Woman, string Clothing, string Shoes, string Jewelry,string Watches)
         {
             SellerViewModel view = new SellerViewModel();
@@ -64,11 +60,12 @@ namespace _ZEEN.Controllers
             return View(view);
         }
 
-        // GET: Sales/Details/5
+        // GET: Sales/Details/
         public IActionResult Details(int? id, SellerViewModel view)
         {
            // var currentUser = User.Identity.GetUserId();
 
+            
             view = new SellerViewModel()
             {
                 sale = new Sale(),
@@ -76,8 +73,7 @@ namespace _ZEEN.Controllers
             };
             view.sale = _context.Sales.Where(s=>s.Id ==id).SingleOrDefault();
 
-            //I am trying  to  Link SaleID and RegularuserID I  wanna  show who posted the sale
-            // view.user = _context.RegularUsers.Where(s => s.UserName == view.user.UserName).SingleOrDefault();
+           //Show who Pasted the Sale
             view.user = _context.RegularUsers.Where(s => s.ApplicationUserId == view.sale.SaleID).SingleOrDefault();
 
 
@@ -132,7 +128,6 @@ namespace _ZEEN.Controllers
             }
             return View(sale);
         }
-
         // POST: Sales/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
