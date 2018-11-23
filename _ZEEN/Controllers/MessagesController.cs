@@ -24,9 +24,10 @@ namespace _ZEEN.Controllers
         // GET: Messages
         public IActionResult Index()
         {
+           var currentUser = User.Identity.GetUserId();
             UserViewModel view = new UserViewModel();
             List<Messages> messages = new List<Messages>();
-            view.messages = _context.Messages.ToList();
+            view.messages = _context.Messages.Where(m=>m.To == currentUser).ToList();
             return View(view);
         }
 

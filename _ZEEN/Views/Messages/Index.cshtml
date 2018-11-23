@@ -14,16 +14,19 @@
 
 @foreach (var item in Model.messages)
 {
+    //int count = 0;
+    if (Model.messages.Count >0) {
+<div class="form-group">
+    <span class="help-block">Sent From @Html.DisplayFor(modelItem => item.Sender)</span>
 
-    <div class="form-group">
-        <label for="textArea" class="col-lg-2 control-label">
-            @Html.DisplayNameFor(model => model.message.Message)
-        </label>
-        <div class="col-lg-10">
-            <textarea class="form-control" rows="3" id="textArea"> @Html.DisplayFor(modelItem => item.Message)</textarea>
-            <span class="help-block">@DateTime.Now</span>
-        </div>
+    <label for="textArea" class="col-lg-2 control-label">
+        @Html.DisplayNameFor(model => model.message.Message)
+    </label>
+    <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea"> @Html.DisplayFor(modelItem => item.Message)</textarea>
+        <span class="help-block">Sent On @Html.DisplayFor(modelItem => item.DateSent)</span>
     </div>
+</div>
 
 
     <tr>
@@ -34,6 +37,14 @@
             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
         </td>
     </tr>
+    }else{
+        <div class="form-group">
+   
+    <div class="col-lg-10">
+        No Message
+    </div>
+</div>
+    }
 }
 
 

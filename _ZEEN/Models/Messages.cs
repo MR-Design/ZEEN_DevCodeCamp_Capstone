@@ -20,7 +20,8 @@ namespace _ZEEN.Models
 
         public string Message { get; set; }
 
-        // public DateTime DateSent { get; set; }
+        public DateTime DateSent { get; set; }
+        public string Sender { get; set; }
 
         public bool Read { get; set; }
     }

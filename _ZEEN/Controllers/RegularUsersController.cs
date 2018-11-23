@@ -125,6 +125,8 @@ namespace _ZEEN.Controllers
             var currentUser = User.Identity.GetUserId();
             view.message.FromId = currentUser;
 
+            //view.message.Sender = view.user.UserName;
+
             // view.message.To = _context.RegularUsers.Where(x => x.UserName ==).SingleOrDefault();
             if (ModelState.IsValid)
             {
