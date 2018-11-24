@@ -64,7 +64,12 @@
         <dd>
             @Html.DisplayFor(model => model.user.WebSite)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.user.Street)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.Street)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.user.City)
         </dt>
@@ -87,8 +92,10 @@
 </div>
 
 <div>
+    <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn">Follow</a>
 
-    <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-default">Edit</a>
+
+    @*<a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-default">Edit</a>*@
 </div>
 
 

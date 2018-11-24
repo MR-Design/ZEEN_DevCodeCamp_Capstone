@@ -37,10 +37,14 @@ namespace _ZEEN.Models
         [StringLength(10000), DataType(DataType.MultilineText)]
         public string Bio { get; set; }
 
+        public string Street { get; set; }
+
         public string City { get; set; }
 
         public string State { get; set; }
         [Display(Name = "Zip code")]
         public int ZipCode { get; set; }
+
+       
     }
 }

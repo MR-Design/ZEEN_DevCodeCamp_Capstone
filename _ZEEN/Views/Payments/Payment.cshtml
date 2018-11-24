@@ -1,0 +1,91 @@
+﻿@model _ZEEN.Models.ViewModels.BuyerViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container body-content">
+    <div class="col-xs-6 col-md-6">
+        <div class="thumbnail">
+            <ul class="breadcrumb">
+                <li class="active">
+                    <h4>  Shipping Information </h4>
+                </li>
+            </ul>
+
+            <div class="container">
+                <div>
+                    <strong>
+                        Full Name :  @Html.DisplayFor(model => model.user.FirstName)
+                        @Html.DisplayFor(model => model.user.LastName)
+                    </strong>
+                </div>
+                <br />
+                <strong>
+                    Address :  @Html.DisplayFor(model => model.user.Street) ,
+                    @Html.DisplayFor(model => model.user.City)   ,
+                    @Html.DisplayFor(model => model.user.State)
+                    @Html.DisplayFor(model => model.user.ZipCode)
+                </strong>
+            </div>
+
+        </div>
+        <div class="col-xs-6 col-md-6">
+
+            <button type="button" class="btn btn-primary btn-lg btn-block">Checkout with PayPal</button>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <ul class="breadcrumb">
+                <li class="active"><h4> Product Confirmation </h4></li>
+            </ul>
+            <h4 class="card-title">
+                <strong>
+                    @Html.DisplayFor(model => model.sale.Detail)
+                </strong>
+            </h4>
+            <img class="img-responsive" style="height: 25%; width: 25%; display: block;" src="https://di2ponv0v5otw.cloudfront.net/posts/2018/10/05/5bb7f7ed035cf1ffa79cbfee/m_5bb7f831409c1558227aa607.jpg" alt="Card image">
+
+            <h6 class="card-title">
+                @*<a style="color:black" asp-action="Profiles" asp-controller="RegularUsers" asp-route-id="@Model.user.ApplicationUserId"> Seller @Html.DisplayFor(model => model.user.UserName)</a>*@
+
+            </h6>
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-body">
+
+                    <div class="card mb-3">
+                    </div>
+
+
+
+                    <h4 class="card-link" style="font-weight:900;">
+                        Price :  $ @Html.DisplayFor(Model => Model.sale.UnitPrice)
+                    </h4>
+
+                    <h4 class="card-link" style="font-weight:900;">
+                        @Html.DisplayNameFor(model => model.sale.Size) :
+
+                        @Html.DisplayFor(Model => Model.sale.Size)
+
+                    </h4>
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+
+<style>
+    .body-content {
+        margin-top: 2.5%;
+    }
+
+    .card-body {
+        margin-top: 5%;
+    }
+</style>
+

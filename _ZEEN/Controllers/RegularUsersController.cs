@@ -151,7 +151,7 @@ namespace _ZEEN.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Image,Gender,UserName,Bio,WebSite,FirstName,LastName,City,State,ZipCode")] RegularUser regularUser)
+        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Image,Gender,UserName,Bio,WebSite,FirstName,LastName,Street,City,State,ZipCode")] RegularUser regularUser)
         {
 
                 RegularUser rUser = _context.RegularUsers.Where(s => s.ApplicationUserId == User.Identity.GetUserId().ToString()).SingleOrDefault();
@@ -203,9 +203,11 @@ namespace _ZEEN.Controllers
             view.user.FirstName = collection["user.FirstName"];
             view.user.WebSite = collection["user.WebSite"];
             view.user.Bio = collection["user.Bio"];
+            view.user.Street = collection["user.Street"];
             view.user.City = collection["user.City"];
             view.user.State = collection["user.State"];
             view.user.ZipCode = Int32.Parse(collection["user.ZipCode"]);
+
             _context.SaveChanges();
             return RedirectToAction("UserDetails", "RegularUsers");
         }
