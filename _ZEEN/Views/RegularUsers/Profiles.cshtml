@@ -92,8 +92,7 @@
 </div>
 
 <div>
-    <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn">Follow</a>
-
+    
 
     @*<a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-default">Edit</a>*@
 </div>
@@ -109,23 +108,28 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <br />
 
+            <div class="form-group">
+                <input type="hidden" asp-for="follower.To" value="@Model.user.ApplicationUserId" />
+                <input type="hidden" asp-for="follower.Sender" value="@Model.user.UserName" />
 
+                <input type="submit" value="Follow" class="btn btn-success" />
+            </div>
 
-                <div class="container-fluid">
+            <div class="container-fluid">
 
-                    <textarea class="form-control" rows="5" style="color:aliceblue; background-color:#222222;"  asp-for="@Model.message.Message"> </textarea>
-                    <span asp-validation-for="@Model.message.Message" class="text-danger"></span>
-                    <br />
-                    <span class="help-block">@DateTime.Now</span>
+                <textarea class="form-control" rows="5" style="color:aliceblue; background-color:#222222;" asp-for="@Model.message.Message"> </textarea>
+                <span asp-validation-for="@Model.message.Message" class="text-danger"></span>
+                <br />
+                <span class="help-block">@DateTime.Now</span>
 
-                </div>
-                <div class="form-group">
-                    <input type="hidden" asp-for="message.To" value="@Model.user.ApplicationUserId" />
-                    <input type="hidden" asp-for="message.Sender" value="@Model.user.UserName" />
-                    <input type="hidden" asp-for="message.DateSent" value="@DateTime.Now" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="message.To" value="@Model.user.ApplicationUserId" />
+                <input type="hidden" asp-for="message.Sender" value="@Model.user.UserName" />
+                <input type="hidden" asp-for="message.DateSent" value="@DateTime.Now" />
 
-                    <input type="submit" value="Send Message" class="btn btn-success" />
-                </div>
+                <input type="submit" value="Send Message" class="btn btn-success" />
+            </div>
         </form>
     </div>
 </div>

@@ -10,8 +10,8 @@ using _ZEEN.Data;
 namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181126030714_addedStatus")]
-    partial class addedStatus
+    [Migration("20181126190305_felloewrs")]
+    partial class felloewrs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,25 @@ namespace _ZEEN.Migrations
                 .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("_ZEEN.Models.Follower", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FromId");
+
+                    b.Property<string>("Sender");
+
+                    b.Property<string>("To");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromId");
+
+                    b.ToTable("Followers");
+                });
 
             modelBuilder.Entity("_ZEEN.Models.Messages", b =>
                 {
@@ -298,6 +317,13 @@ namespace _ZEEN.Migrations
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("_ZEEN.Models.Follower", b =>
+                {
+                    b.HasOne("_ZEEN.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("FromId");
                 });
 
             modelBuilder.Entity("_ZEEN.Models.Messages", b =>

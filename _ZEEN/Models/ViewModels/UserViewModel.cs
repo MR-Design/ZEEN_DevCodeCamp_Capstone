@@ -15,5 +15,8 @@ namespace _ZEEN.Models.ViewModels
         public Messages message { get; set; }
         public List<Messages> messages { get; set; }
 
+        public Follower follower { get; set; }
+        public List<Follower> followers { get; set; }
+
     }
 }

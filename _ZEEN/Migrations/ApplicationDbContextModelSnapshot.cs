@@ -19,6 +19,25 @@ namespace _ZEEN.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("_ZEEN.Models.Follower", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FromId");
+
+                    b.Property<string>("Sender");
+
+                    b.Property<string>("To");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromId");
+
+                    b.ToTable("Followers");
+                });
+
             modelBuilder.Entity("_ZEEN.Models.Messages", b =>
                 {
                     b.Property<int>("Id")
@@ -296,6 +315,13 @@ namespace _ZEEN.Migrations
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("_ZEEN.Models.Follower", b =>
+                {
+                    b.HasOne("_ZEEN.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("FromId");
                 });
 
             modelBuilder.Entity("_ZEEN.Models.Messages", b =>

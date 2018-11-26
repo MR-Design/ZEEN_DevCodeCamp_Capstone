@@ -18,6 +18,7 @@ namespace _ZEEN.Data
         public DbSet<RegularUser> RegularUsers { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Messages> Messages { get; set; }
+        public DbSet<Follower> Followers { get; set; }
 
     }
 }

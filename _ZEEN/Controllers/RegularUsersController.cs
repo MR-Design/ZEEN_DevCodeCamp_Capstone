@@ -92,7 +92,8 @@ namespace _ZEEN.Controllers
             UserViewModel view = new UserViewModel()
             {
                 message = new Messages(),
-                user = new RegularUser()
+                user = new RegularUser(),
+                follower =new Follower()
 
             };
             RegularUser RegularUsers = _context.RegularUsers.Where(s => s.ApplicationUserId == id).SingleOrDefault();
@@ -124,13 +125,14 @@ namespace _ZEEN.Controllers
 
             var currentUser = User.Identity.GetUserId();
             view.message.FromId = currentUser;
-
+            view.follower.FromId = currentUser;
             //view.message.Sender = view.user.UserName;
 
             // view.message.To = _context.RegularUsers.Where(x => x.UserName ==).SingleOrDefault();
             if (ModelState.IsValid)
             {
                  _context.Messages.Add(view.message);
+                _context.Followers.Add(view.follower);
 
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

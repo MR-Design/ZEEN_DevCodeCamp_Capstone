@@ -23,7 +23,6 @@ namespace _ZEEN.Controllers
         {
             _context = context;
         }
-
         // GET: Saller Inedx Page
         public IActionResult Listing()
         {
@@ -39,10 +38,38 @@ namespace _ZEEN.Controllers
             SellerViewModel view = new SellerViewModel();
             List<Sale> sales = new List<Sale>();
             view.sales = _context.Sales.ToList();
-            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                view.sales = _context.Sales.FullTextSearchQuery(searchString).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Men))
+            {
+                view.sales = _context.Sales.Where(s => s.Gender == Men).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Woman))
+            {
+                view.sales = _context.Sales.Where(s=>s.Gender ==Woman).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Clothing))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Clothing).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Shoes))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Shoes).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Jewelry))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Jewelry).ToList();
+            }
+            else if (!String.IsNullOrEmpty(Watches))
+            {
+                view.sales = _context.Sales.Where(s => s.Category == Watches).ToList();
+            }
             return View(view);
         }
 
+       
         // GET: Sales/Details/
         public IActionResult Details(int? id, SellerViewModel view)
         {
@@ -98,7 +125,7 @@ namespace _ZEEN.Controllers
         // GET: Sales/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-
+          
             if (id == null)
             {
                 return NotFound();
@@ -116,8 +143,11 @@ namespace _ZEEN.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SaleID,Detail,Discription,Category,Gender,Quantity,Size,Brand,Color,UnitPrice")] Sale sale)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Detail,Discription,Category,Gender,Quantity,Size,Brand,Color,UnitPrice")] Sale sale)
         {
+            var currentUser = User.Identity.GetUserId();
+
+            sale.SaleID = currentUser;
             if (id != sale.Id)
             {
                 return NotFound();

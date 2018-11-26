@@ -17,24 +17,22 @@
 <div class="container body-content">
     @foreach (var item in Model.sales)
     {
-        <div class="col-xs-6 col-sm-4">
+        <div class="col-xs-12 ">
 
 
 
             <div class="card mb-3">
-                <a asp-action="Details" asp-route-id="@item.Id" style="color:black">
+                @*<a asp-action="Details" asp-route-id="@item.Id" style="color:black">*@
 
-                    <h3 class="card-header">
-                        @Html.DisplayFor(modelItem => item.Detail)
-                    </h3>
+                <h4 class="card-header">
+                    @Html.DisplayFor(modelItem => item.Detail)
+                </h4>
 
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                    </div>
-                </a>
-                <a asp-action="Details" asp-route-id="@item.Id">
-                    <img style="height: 200px; width: 100%; display: block;" src="https://di2ponv0v5otw.cloudfront.net/posts/2018/10/05/5bb7f7ed035cf1ffa79cbfee/m_5bb7f831409c1558227aa607.jpg" alt="Card image">
-                </a>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                </div>
+                @*</a>*@
+                <img style="height: 50px; width: 10%; display: block;" src="https://di2ponv0v5otw.cloudfront.net/posts/2018/10/05/5bb7f7ed035cf1ffa79cbfee/m_5bb7f831409c1558227aa607.jpg" alt="Card image">
                 <div class="card-body">
                     <a class="card-link" style="font-weight:900;">
                         $ @Html.DisplayFor(modelItem => item.UnitPrice)
@@ -47,13 +45,13 @@
                     <a class="card-link">@Html.DisplayFor(modelItem => item.Brand)</a>
 
                 </div>
-                <div class="card-footer text-muted">
-                    Posted X Days ago
-                </div>
+              
 
                 <a asp-action="Edit" asp-route-id="@item.Id" style="font-weight:bold;">Update</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Remove</a>
-                <a asp-action="Ship" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Ship Item</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Remove</a> |
+                <a asp-action="Ship" asp-route-id="@item.Id" style="color:darkolivegreen;font-weight:bold;">Ship Item</a>
+                <br />
+                <span style="color:rgba(128, 128, 128,.3)"><strong>ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ</strong> </span>
 
             </div>
 
