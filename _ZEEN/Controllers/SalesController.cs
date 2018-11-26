@@ -23,40 +23,23 @@ namespace _ZEEN.Controllers
         {
             _context = context;
         }
+
+        // GET: Saller Inedx Page
+        public IActionResult Listing()
+        {
+            SellerViewModel view = new SellerViewModel();
+            List<Sale> sales = new List<Sale>();
+            view.sales = _context.Sales.Where(s => s.SaleID == User.Identity.GetUserId()).ToList();
+
+            return View(view);
+        }
         // GET: User Index Page Based on Search and Filtring
         public  IActionResult Index(string searchString, string Men, string Woman, string Clothing, string Shoes, string Jewelry,string Watches)
         {
             SellerViewModel view = new SellerViewModel();
             List<Sale> sales = new List<Sale>();
             view.sales = _context.Sales.ToList();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                view.sales = _context.Sales.FullTextSearchQuery(searchString).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Men))
-            {
-                view.sales = _context.Sales.Where(s => s.Gender == Men).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Woman))
-            {
-                view.sales = _context.Sales.Where(s=>s.Gender ==Woman).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Clothing))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Clothing).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Shoes))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Shoes).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Jewelry))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Jewelry).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Watches))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Watches).ToList();
-            }
+            
             return View(view);
         }
 

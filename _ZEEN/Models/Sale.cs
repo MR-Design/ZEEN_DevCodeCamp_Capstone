@@ -33,13 +33,14 @@ namespace _ZEEN.Models
         [Display(Name = "Select Gender")]
         public string Gender { get; set; }
         public int Quantity { get; set; }
-        public int Size { get; set; }
+        public double? Size { get; set; }
         public string Brand { get; set; }
         public string Color { get; set; }
 
         [Display(Name = "Price")]
         public double? UnitPrice { get; set; }
 
+        public bool Statu { get; set; }
 
     }
 }

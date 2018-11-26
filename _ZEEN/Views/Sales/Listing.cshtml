@@ -1,52 +1,16 @@
 ﻿@model _ZEEN.Models.ViewModels.SellerViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listing";
 }
 
-<h5 class="right">
 
-    <a asp-action="Create" asp-controller="Sales">Sell on <strong>ZEEN </strong></a>
-</h5>
 
 <nav class="navbar navbar-default">
 
-
-    <form asp-controller="Sales" asp-action="Index" class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" name="SearchString" placeholder="Search Listings">
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-
-
-
-        <div class="btn-group">
-            <a class="btn btn-default dropdown-toggle bottom" data-toggle="dropdown" aria-expanded="false">
-                All
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a asp-controller="Sales" asp-action="Index" name="Men"> Men</a></li>
-                <li><a asp-controller="Sales" asp-action="Index" name="Woman"> Woman</a></li>
-                <li><a asp-controller="Sales" asp-action="Index" name="Clothing"> Clothing</a></li>
-                <li><a asp-controller="Sales" asp-action="Index" name="Shoes"> Shoes</a></li>
-                <li><a asp-controller="Sales" asp-action="Index" name="Jewelry"> Jewelry</a></li>
-                <li><a asp-controller="Sales" asp-action="Index" name="Watches"> Watches</a></li>
-
-            </ul>
-        </div>
-    </form>
-    
-     
-   
-
+<h4> Welcome to your Seller Dashboard</h4>
 
 </nav>
-
-
-
-
-
 
 
 
@@ -87,7 +51,10 @@
                     Posted X Days ago
                 </div>
 
-            
+                <a asp-action="Edit" asp-route-id="@item.Id" style="font-weight:bold;">Update</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Remove</a>
+                <a asp-action="Ship" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Ship Item</a>
+
             </div>
 
         </div>
