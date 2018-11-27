@@ -28,8 +28,9 @@ namespace _ZEEN.Controllers
         {
             SellerViewModel view = new SellerViewModel();
             List<Sale> sales = new List<Sale>();
+            List<Shipping> shippings = new List<Shipping>();
             view.sales = _context.Sales.Where(s => s.SaleID == User.Identity.GetUserId()).ToList();
-
+            view.shippings = _context.Shippings.Where(s => s.SellerID == User.Identity.GetUserId()).ToList();
             return View(view);
         }
         // GET: User Index Page Based on Search and Filtring

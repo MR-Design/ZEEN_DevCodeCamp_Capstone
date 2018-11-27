@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _ZEEN.Data;
 
 namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181127035107_addedShippingModel")]
+    partial class addedShippingModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +165,7 @@ namespace _ZEEN.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SellerID");
+                    b.HasIndex("BuyerID");
 
                     b.ToTable("Shippings");
                 });
@@ -380,7 +382,7 @@ namespace _ZEEN.Migrations
                 {
                     b.HasOne("_ZEEN.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("SellerID");
+                        .HasForeignKey("BuyerID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -8,7 +8,7 @@
 
 <nav class="navbar navbar-default">
 
-<h4> Welcome to your Seller Dashboard</h4>
+<h4> Seller Dashboard</h4>
 
 </nav>
 
@@ -61,3 +61,26 @@
     }
 
 </div>
+
+
+<div class="container body-content">
+    @foreach (var item in Model.shippings)
+    {
+        <div class="col-xs-12 ">
+
+                <h4 class="card-header">
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </h4>
+
+                <h4 class="card-header">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </h4>
+                <h4 class="card-header">
+                    @Html.DisplayFor(modelItem => item.Street)
+                </h4>
+            </div>
+
+
+
+    }
+    </div>

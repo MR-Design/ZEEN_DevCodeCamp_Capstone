@@ -27,7 +27,8 @@ namespace _ZEEN.Controllers
             view = new BuyerViewModel()
             {
                 sale = new Sale(),
-                user = new RegularUser()
+                user = new RegularUser(),
+                shipping = new Models.Shipping()
             };
             view.sale = _context.Sales.Where(s => s.Id == id).SingleOrDefault();
 
@@ -46,8 +47,15 @@ namespace _ZEEN.Controllers
             BuyerViewModel view = new BuyerViewModel()
             {
                 user = new RegularUser(),
-                sale = new Sale()
+                sale = new Sale(),
+                shipping = new Models.Shipping()
             };
+            view.shipping.SellerID = User.Identity.GetUserId();
+            view.shipping.FirstName = view.user.FirstName;
+            view.shipping.LastName = view.user.LastName;
+            _context.Shippings.Add(view.shipping);
+
+            _context.SaveChanges();
             var customers = new CustomerService();
             var charges = new ChargeService();
 

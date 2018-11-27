@@ -11,5 +11,7 @@ namespace _ZEEN.Models.ViewModels
         public List<RegularUser> users { get; set; }
         public Sale sale { get; set; }
         public List<Sale> sales { get; set; }
+        public Shipping shipping { get; set; }
+        public List<Shipping> shippings { get; set; }
     }
 }
