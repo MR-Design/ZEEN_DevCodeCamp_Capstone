@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using _ZEEN.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Korzh.EasyQuery.AspNetCore;
-using _ZEEN.Models;
-using Stripe;
 
 namespace _ZEEN
 {
@@ -30,8 +24,6 @@ namespace _ZEEN
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -39,16 +31,8 @@ namespace _ZEEN
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddEasyQuery();
-            services.AddSignalR();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +41,6 @@ namespace _ZEEN
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -68,11 +51,6 @@ namespace _ZEEN
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<ChatHub>("/chatHub");
-            });
-            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
@@ -80,8 +58,6 @@ namespace _ZEEN
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
-
         }
     }
 }

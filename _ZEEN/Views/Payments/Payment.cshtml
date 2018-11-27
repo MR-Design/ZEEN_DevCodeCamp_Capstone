@@ -31,8 +31,22 @@
         </div>
         <div class="col-xs-6 col-md-6">
 
-            <button type="button" class="btn btn-primary btn-lg btn-block">Checkout with PayPal</button>
-            </div>
+            @using Microsoft.Extensions.Options
+            @inject IOptions<StripeSettings> Stripe
+
+            <form asp-action="Payment" asp-controller="Payments">
+                <article>
+                    <label></label>
+                </article>
+                <script src="//checkout.stripe.com/v2/checkout.js"
+                        class="stripe-button"
+                        data-key="@Stripe.Value.PublishableKey"
+                        data-locale="auto"
+                        data-description="Sample Charge"
+                        data-amount="@(Model.sale.UnitPrice*100)">
+                </script>
+            </form>
+        </div>
         </div>
         <div class="col-xs-6 col-md-6">
             <ul class="breadcrumb">

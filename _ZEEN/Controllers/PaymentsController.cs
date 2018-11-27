@@ -7,6 +7,7 @@ using _ZEEN.Models;
 using _ZEEN.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace _ZEEN.Controllers
 {
@@ -35,9 +36,46 @@ namespace _ZEEN.Controllers
 
             view.user = _context.RegularUsers.Where(s => s.ApplicationUserId == currentUser).SingleOrDefault();
 
-
-
+          
             return View(view);
+        }
+
+        [HttpPost]
+        public IActionResult Payment(string stripeEmail, string stripeToken)
+        {
+            BuyerViewModel view = new BuyerViewModel()
+            {
+                user = new RegularUser(),
+                sale = new Sale()
+            };
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                SourceToken = stripeToken
+            });
+
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 500,
+                //Amount = view.sale.UnitPrice,
+                Description = "Sample Charge",
+                Currency = "usd",
+                CustomerId = customer.Id
+            });
+
+            return RedirectToAction("index", "Sales");
+        }
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Error()
+        {
+            return View();
         }
     }
 }

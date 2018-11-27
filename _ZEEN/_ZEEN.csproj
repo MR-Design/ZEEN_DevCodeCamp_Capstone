@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
+    <PackageReference Include="Stripe.net" Version="21.5.0" />
   </ItemGroup>
 
   <ItemGroup>

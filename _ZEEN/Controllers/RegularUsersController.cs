@@ -15,7 +15,8 @@ using _ZEEN.Models.ViewModels;
 
 namespace _ZEEN.Controllers
 {
-    public class RegularUsersController : Controller
+
+public class RegularUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IHostingEnvironment he;
@@ -85,6 +86,54 @@ namespace _ZEEN.Controllers
             }
             return View(view);
         }
+
+        // GET: Fellowers
+        public IActionResult Follow()
+        {
+
+            UserViewModel view = new UserViewModel()
+            {
+                follower = new Follower()
+
+            };
+           
+
+            ViewData["Followers"] = _context.Followers.Count();
+
+            //id = view.user.ApplicationUserId;
+           
+
+            if (view.user == null)
+            {
+                return NotFound();
+            }
+
+            return View(view);
+        }
+        [HttpPost]
+        public IActionResult Follow(UserViewModel view)
+        {
+            //view = new UserViewModel()
+            //{
+            //    message = new Messages()
+            //};
+            //view.message = messages; // not good
+
+            var currentUser = User.Identity.GetUserId();
+            view.follower.FromId = currentUser;
+            //view.message.Sender = view.user.UserName;
+
+            // view.message.To = _context.RegularUsers.Where(x => x.UserName ==).SingleOrDefault();
+            if (ModelState.IsValid)
+            {
+                _context.Followers.Add(view.follower);
+
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Sales");
+            }
+            return RedirectToAction();
+        }
+
         // GET: RegularUsers/Details/5
         public IActionResult Profiles(string id)
         {
@@ -97,10 +146,10 @@ namespace _ZEEN.Controllers
 
             };
             RegularUser RegularUsers = _context.RegularUsers.Where(s => s.ApplicationUserId == id).SingleOrDefault();
-
-
-
             view.user = RegularUsers;
+
+            ViewData["Followers"] = _context.Followers.Count();
+
             //id = view.user.ApplicationUserId;
             if (id == null)
             {
@@ -125,17 +174,15 @@ namespace _ZEEN.Controllers
 
             var currentUser = User.Identity.GetUserId();
             view.message.FromId = currentUser;
-            view.follower.FromId = currentUser;
             //view.message.Sender = view.user.UserName;
 
             // view.message.To = _context.RegularUsers.Where(x => x.UserName ==).SingleOrDefault();
             if (ModelState.IsValid)
             {
                  _context.Messages.Add(view.message);
-                _context.Followers.Add(view.follower);
 
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Sales");
             }
             return RedirectToAction();
         }
@@ -183,6 +230,7 @@ namespace _ZEEN.Controllers
 
           
             view.user = RegularUsers;     
+
             return View(view);
         }
 
@@ -251,7 +299,10 @@ namespace _ZEEN.Controllers
             return _context.RegularUsers.Any(e => e.Id == id);
         }
     }
+
+
 }
+
 
 
 //here an exmeple from DropZone to Drog and Drop Pictures

@@ -38,7 +38,7 @@ namespace _ZEEN.Models
         public string Color { get; set; }
 
         [Display(Name = "Price")]
-        public double? UnitPrice { get; set; }
+        public long? UnitPrice { get; set; }
 
         public bool Statu { get; set; }
 
