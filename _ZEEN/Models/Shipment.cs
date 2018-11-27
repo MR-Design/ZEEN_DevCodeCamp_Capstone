@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _ZEEN.Models
 {
-    public class Shipping
+    public class Shipment
     {
         [Key]
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace _ZEEN.Models
         public ApplicationUser ApplicationUser { get; set; }
 
         public string BuyerID { get; set; }
-        
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -32,3 +32,4 @@ namespace _ZEEN.Models
         public bool Shipped { get; set; }
     }
 }
+

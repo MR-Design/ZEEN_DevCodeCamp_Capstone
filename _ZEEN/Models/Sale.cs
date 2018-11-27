@@ -20,7 +20,7 @@ namespace _ZEEN.Models
         [ForeignKey("ApplicationUser")]
         public string SaleID { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-
+        public string BuyerID { get; set; }
         [Display(Name = "Title")]
         public string Detail { get; set; }
 

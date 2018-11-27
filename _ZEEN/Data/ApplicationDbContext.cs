@@ -19,7 +19,7 @@ namespace _ZEEN.Data
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Messages> Messages { get; set; }
         public DbSet<Follower> Followers { get; set; }
-        public DbSet<Shipping> Shippings { get; set; }
+        public DbSet<Shipment> Shipments { get; set; }
 
 
     }

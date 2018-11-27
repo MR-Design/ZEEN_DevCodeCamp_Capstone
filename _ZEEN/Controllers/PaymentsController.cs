@@ -28,7 +28,7 @@ namespace _ZEEN.Controllers
             {
                 sale = new Sale(),
                 user = new RegularUser(),
-                shipping = new Models.Shipping()
+                shipment = new Shipment()
             };
             view.sale = _context.Sales.Where(s => s.Id == id).SingleOrDefault();
 
@@ -42,18 +42,20 @@ namespace _ZEEN.Controllers
         }
 
         [HttpPost]
-        public IActionResult Payment(string stripeEmail, string stripeToken)
+        public IActionResult Payment(int? id, string stripeEmail, string stripeToken)
         {
+
             BuyerViewModel view = new BuyerViewModel()
             {
                 user = new RegularUser(),
                 sale = new Sale(),
-                shipping = new Models.Shipping()
+                shipment = new Shipment()
             };
-            view.shipping.SellerID = User.Identity.GetUserId();
-            view.shipping.FirstName = view.user.FirstName;
-            view.shipping.LastName = view.user.LastName;
-            _context.Shippings.Add(view.shipping);
+
+            //view.shipment.FirstName = view.user.FirstName;
+            //_context.RegularUsers.Select(x=>x.LastName == view.shipping.LastName).SingleOrDefault();
+            var userInDb = _context.Sales.Where(a => a.Id == id).Single();
+            userInDb.BuyerID = User.Identity.GetUserId();
 
             _context.SaveChanges();
             var customers = new CustomerService();
@@ -74,7 +76,7 @@ namespace _ZEEN.Controllers
                 CustomerId = customer.Id
             });
 
-            return RedirectToAction("index", "Sales");
+            return RedirectToAction("Index", "Sales");
         }
         public IActionResult Index()
         {

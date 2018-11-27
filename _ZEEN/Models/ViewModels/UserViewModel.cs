@@ -17,8 +17,8 @@ namespace _ZEEN.Models.ViewModels
 
         public Follower follower { get; set; }
         public List<Follower> followers { get; set; }
-        public Shipping shipping { get; set; }
-        public List<Shipping> shippings { get; set; }
+        public Shipment shipment { get; set; }
+        public List<Shipment> shipments { get; set; }
 
     }
 }
