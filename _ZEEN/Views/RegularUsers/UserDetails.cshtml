@@ -5,93 +5,135 @@
 }
 
 
-<div>
+
+<div class="container-fluid">
+    <div class="col-xs-12">
+
+        <hr />
+        <style>
+
+            img {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                text-align: center;
+            }
+        </style>
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Avatar">
+
+                    <h4 class="modal-title" style="padding-top:5px;">
+                        @Html.DisplayFor(model => model.user.UserName)
+
+                    </h4>
+                </div>
+                <div class="modal-body" style="font-size:15px; color:black;">
+                    @Html.DisplayNameFor(model => model.user.FirstName)
+                    @Html.DisplayFor(model => model.user.FirstName)<br />
 
 
+                    @Html.DisplayNameFor(model => model.user.LastName): @Html.DisplayFor(model => model.user.LastName)<br />
+                    Gender: @Html.DisplayFor(model => model.user.Gender)<br />
 
-    <hr />
-    <img src="http://tonypratt.com/wp-content/uploads/Maria-Cassandra-8.31.2010_04811.jpg" alt="Avatar">
-    <style>
+                    @Html.DisplayNameFor(model => model.user.Bio): @Html.DisplayFor(model => model.user.Bio)<br />
+                    Website: @Html.DisplayFor(model => model.user.WebSite)<br />
 
-        img {
-            border-radius: 50%;
-            width :150px; height: 150px;
-        }
-    </style>
-    <dl class="dl-horizontal">
+                    Address: @Html.DisplayFor(model => model.user.Street)
 
+                    @Html.DisplayFor(model => model.user.City),
 
+                  @Html.DisplayFor(model => model.user.State)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.user.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.UserName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.Gender)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.Gender)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.Bio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.Bio)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.WebSite)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.WebSite)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.State)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.Street)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.City)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.City)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.State)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.State)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.ZipCode)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.ZipCode)
-        </dd>
-        @*<dt>
-            <span> Number of followers</span>
-        </dt>
-        <dd>
-            @ViewData["Followers"]
-        </dd>*@
-    </dl>
+                   @Html.DisplayFor(model => model.user.ZipCode)
+                </div>
+                <div class="modal-footer">
+                    <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+@*<dl class="dl-horizontal">
 
-<div>
 
-    <a asp-action="EditProfile" asp-controller="RegularUsers"class="btn btn-default">Edit</a> 
-</div>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.user.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.UserName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.FirstName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.FirstName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.Gender)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.Gender)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.Bio)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.Bio)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.WebSite)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.WebSite)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.State)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.Street)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.State)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.State)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.user.ZipCode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.user.ZipCode)
+            </dd>
+           <dt>
+                <span> Number of followers</span>
+            </dt>
+            <dd>
+                @ViewData["Followers"]
+            </dd>
+        </dl>
+    </div>
+
+        <div>
+
+            <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-default">Edit</a>
+        </div>
+    </div>*@
+
+

@@ -8,12 +8,13 @@
 
         <div class="card mb-3">
 
-            <img class="img-responsive" style="height: 350px; width: 100%; display: block;" src="https://di2ponv0v5otw.cloudfront.net/posts/2018/10/05/5bb7f7ed035cf1ffa79cbfee/m_5bb7f831409c1558227aa607.jpg" alt="Card image">
-            <div class="card-body">
-
-                <a class="card-link">Like</a> |
-                <a class="card-link">Comment</a> |
-                <a class="card-link">Share</a>
+            <img class="img-responsive" style="height: 350px; width: 100%; display: block;" src="https://images.pexels.com/photos/371095/pexels-photo-371095.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image">
+            <div class="card-body" >
+                <strong style="width:100%;">
+                    <a style="color:dimgrey" class="card-link">Like</a> |
+                    <a style="color:dimgrey; padding:0 5% 0 5%;" class="card-link">Comment</a> |
+                    <a style="color:dimgrey" class="card-link">Share</a>
+                </strong>
             </div>
         </div>
 
@@ -50,7 +51,7 @@
 
                 </h5>
             </div>
-            <a class="btn btn-warning" style="color:#ffffff; Background:#000000;" asp-action="Payment" asp-controller="Payments" asp-route-id="@Model.sale.Id"> Buy Now</a>
+            <a class="btn" style="color:#ffffff; background-color:gray;" asp-action="Payment" asp-controller="Payments" asp-route-id="@Model.sale.Id"> Buy Now</a>
 
         </div>
 

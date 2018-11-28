@@ -49,17 +49,17 @@ public class RegularUsersController : Controller
             return Ok(new { count = files.Count, size, filePath });
         }
 
-        public IActionResult ShowFields(string fullname, IFormFile pic)
-        {
-            ViewData["fname"] = fullname;
-            if (pic !=null)
-            {
-                var fileName = Path.Combine(he.WebRootPath, Path.GetDirectoryName(pic.FileName));
-                pic.CopyTo(new FileStream(fileName, FileMode.Create));
-                    ViewData["fileLocation"] ="/"+ Path.GetFileName(pic.FileName);
-            }
-            return View();
-        }
+        //public IActionResult ShowFields(string fullname, IFormFile pic)
+        //{
+        //    ViewData["fname"] = fullname;
+        //    if (pic !=null)
+        //    {
+        //        var fileName = Path.Combine(he.WebRootPath, Path.GetDirectoryName(pic.FileName));
+        //        pic.CopyTo(new FileStream(fileName, FileMode.Create));
+        //            ViewData["fileLocation"] ="/"+ Path.GetFileName(pic.FileName);
+        //    }
+        //    return View();
+        
         // GET: RegularUsers
         public async Task<IActionResult> Index()
         {
@@ -297,6 +297,20 @@ public class RegularUsersController : Controller
         private bool RegularUserExists(int? id)
         {
             return _context.RegularUsers.Any(e => e.Id == id);
+        }
+
+        private async Task<Sale> StoreHomePicture(Sale img, IFormFile picture)
+        {
+            if (picture != null)
+            {
+                using (var stream = new System.IO.MemoryStream())
+                {
+                    await picture.CopyToAsync(stream);
+                    img.Image = stream.ToArray();
+
+                }
+            }
+            return img;
         }
     }
 

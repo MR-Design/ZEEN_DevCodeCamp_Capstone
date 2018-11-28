@@ -12,7 +12,7 @@
 
 
     <hr />
-    <img src="http://tonypratt.com/wp-content/uploads/Maria-Cassandra-8.31.2010_04811.jpg" alt="Avatar">
+    <img src="https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Avatar">
     <style>
 
         img {
@@ -107,7 +107,7 @@
         <input type="hidden" asp-for="follower.To" value="@Model.user.ApplicationUserId" />
         <input type="hidden" asp-for="follower.Sender" value="@Model.user.UserName" />
 
-        <input type="submit" value="Follow" class="btn btn-success" />
+        <input type="submit" value="Follow" class="btn btn-primary" />
     </form>
 
 </div>
@@ -126,7 +126,7 @@
 
             <div class="container-fluid">
 
-                <textarea class="form-control" rows="5" style="color:aliceblue; background-color:#222222;" asp-for="@Model.message.Message"> </textarea>
+                <textarea class="form-control" rows="5" style="color:dimgray; background-color:snow;" asp-for="@Model.message.Message"> </textarea>
                 <span asp-validation-for="@Model.message.Message" class="text-danger"></span>
                 <br />
                 <span class="help-block">@DateTime.Now</span>
@@ -137,7 +137,7 @@
                 <input type="hidden" asp-for="message.Sender" value="@Model.user.UserName" />
                 <input type="hidden" asp-for="message.DateSent" value="@DateTime.Now" />
 
-                <input type="submit" value="Send Message" class="btn btn-success" />
+                <input type="submit" value="Send Message" class="btn btn-primary" />
             </div>
         </form>
     </div>

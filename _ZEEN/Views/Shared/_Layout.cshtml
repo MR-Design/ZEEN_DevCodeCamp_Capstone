@@ -47,14 +47,9 @@
         @RenderBody()
         <hr />
 
-        <footer>
-            <div class="alert alert-dismissible alert-info">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <h4>Footer!</h4>
-                <p>.<a href="#" class="alert-link"></a>.</p>
-            </div>        </footer>
-    </div>
 
+    </div>
+   
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -77,6 +72,42 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+    <style>
+        .navbar-inverse {
+            background-color: #fff;
+            border-color: #080808;
+        }
+
+            .navbar-inverse .navbar-nav > li > a {
+                color: #6b6b6b;
+                font-weight: 800;
+            }
+
+                .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+                    color: #151414;
+                    background-color: #dbdbdb;
+                }
+        .bg4 {
+            background-color: #dbdbdb;
+            width: 100%;
+            height: 200px;
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover; /* Resize the background image to cover the entire container */
+        }
+
+        body {
+            font-family:Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+    </style>
 
 </body>
+<footer class="container-fluid bg4">
+    <p style="text-align:center; margin-top:12%; font-size:15px"> <span> &copy </span> ZEEN</p>
+
+</footer>
 </html>

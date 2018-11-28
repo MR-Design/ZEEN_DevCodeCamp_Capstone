@@ -10,8 +10,7 @@ using _ZEEN.Models;
 using Microsoft.AspNet.Identity;
 using _ZEEN.Models.ViewModels;
 using Korzh.EasyQuery.Linq;
-
-
+using Microsoft.AspNetCore.Http;
 
 namespace _ZEEN.Controllers
 {
@@ -114,10 +113,11 @@ namespace _ZEEN.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Sale sale)
+        public async Task<IActionResult> Create(Sale sale) //IFormFile picture
         {
             var currentUser = User.Identity.GetUserId();
-
+            
+            //sale = await StoreHomePicture(sale, picture);
             // Sale seller = _context.Sales.Where(s => s.SaleID == currentUser).SingleOrDefault();
 
             sale.SaleID = currentUser;
@@ -219,5 +219,11 @@ namespace _ZEEN.Controllers
         {
             return _context.Sales.Any(e => e.Id == id);
         }
+
+       
+
+        
+
     }
 }
+

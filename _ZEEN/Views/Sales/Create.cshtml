@@ -4,14 +4,21 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-<h4>Sale</h4>
-<hr />
+@*@{
+        var imgSrc = "hello";
+            var base64 = Convert.ToBase64String(Model.Image);
+            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }*@
+@*@using (Html.BeginForm("Create", "Sales", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {*@
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <form asp-action="Create">
+
+        <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
+            <br />
+
+
             <div class="form-group">
                 <label asp-for="Detail" class="control-label"></label>
                 <input asp-for="Detail" class="form-control" />
@@ -32,6 +39,9 @@
                 <input asp-for="Gender" class="form-control" />
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-6">
+            <br />
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
                 <input asp-for="Quantity" class="form-control" />
@@ -57,16 +67,16 @@
                 <input asp-for="UnitPrice" class="form-control" />
                 <span asp-validation-for="UnitPrice" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <input type="file" name="picture" multiple value="Picture" />
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Sell" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

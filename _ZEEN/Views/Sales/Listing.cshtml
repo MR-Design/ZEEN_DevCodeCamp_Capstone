@@ -6,92 +6,95 @@
 
 
 
-<nav class="navbar navbar-default">
 
-<h4> Seller Dashboard</h4>
-
-</nav>
-
+    <h5> Seller dashboard</h5>
 
 
 <div class="container body-content">
-    @foreach (var item in Model.sales)
-    {
-        <div class="col-xs-6 ">
+    <div class=" col-xs-6">
+        @foreach (var item in Model.sales)
+        {
 
 
 
-            <div class="card mb-3">
-                @*<a asp-action="Details" asp-route-id="@item.Id" style="color:black">*@
+                <div class="card mb-3">
+                    @*<a asp-action="Details" asp-route-id="@item.Id" style="color:black">*@
 
-                <h4 class="card-header">
-                    @Html.DisplayFor(modelItem => item.Detail)
-                </h4>
+                    <h4 class="card-header">
+                        @Html.DisplayFor(modelItem => item.Detail)
+                    </h4>
 
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                    </div>
+                    @*</a>*@
+                    <img style="height: 75px; width: 15%; display: block;" src="https://di2ponv0v5otw.cloudfront.net/posts/2018/10/05/5bb7f7ed035cf1ffa79cbfee/m_5bb7f831409c1558227aa607.jpg" alt="Card image">
+                    <div class="card-body">
+                        <a class="card-link" style="font-weight:900;">
+                            $ @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </a>
+                        <a class="card-link">@Html.DisplayFor(modelItem => item.Gender)</a>
+                        <a class="card-link">
+                            @Html.DisplayNameFor(model => model.sale.Size)
+                            @Html.DisplayFor(modelItem => item.Size)
+                        </a> |
+                        <a class="card-link">@Html.DisplayFor(modelItem => item.Brand)</a>
+
+                    </div>
+
+
+                    <a asp-action="Edit" asp-route-id="@item.Id" style="font-weight:bold;">Update</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Remove</a> |
+                    <a asp-action="Ship" asp-route-id="@item.Id" style="color:darkolivegreen;font-weight:bold;">Ship Item</a>
+                    <br />
+                    <span style="color:rgba(128, 128, 128,.3)"><strong>ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ</strong> </span>
+
                 </div>
-                @*</a>*@
-                <img style="height: 50px; width: 10%; display: block;" src="https://di2ponv0v5otw.cloudfront.net/posts/2018/10/05/5bb7f7ed035cf1ffa79cbfee/m_5bb7f831409c1558227aa607.jpg" alt="Card image">
-                <div class="card-body">
-                    <a class="card-link" style="font-weight:900;">
-                        $ @Html.DisplayFor(modelItem => item.UnitPrice)
-                    </a>
-                    <a class="card-link">@Html.DisplayFor(modelItem => item.Gender)</a>
-                    <a class="card-link">
-                        @Html.DisplayNameFor(model => model.sale.Size)
-                        @Html.DisplayFor(modelItem => item.Size)
-                    </a> |
-                    <a class="card-link">@Html.DisplayFor(modelItem => item.Brand)</a>
-
-                </div>
 
 
-                <a asp-action="Edit" asp-route-id="@item.Id" style="font-weight:bold;">Update</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" style="color:orangered;font-weight:bold;">Remove</a> |
-                <a asp-action="Ship" asp-route-id="@item.Id" style="color:darkolivegreen;font-weight:bold;">Ship Item</a>
-                <br />
-                <span style="color:rgba(128, 128, 128,.3)"><strong>ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ</strong> </span>
+
+
+            <div class="col-xs-6 ">
 
             </div>
 
-        </div>
+        }
+
+    </div>
 
 
+    <div class="col-xs-6">
+       <strong><h5>Confirm Shipping For</h5></strong> 
+        @*@foreach (var item in Model.sales)
+        {
 
-        <div class="col-xs-6 ">
+            @Html.DisplayFor(modelItem => item.Detail)
+        }*@
+        @*@Html.DisplayNameFor(model => model.sale.Detail)*@
+        @foreach (var item in Model.users)
+        {
 
-        </div>
+            <div>
+                Full Name :
+                @Html.DisplayFor(modelItem => item.FirstName)
 
-    }
 
+                @Html.DisplayFor(modelItem => item.LastName)
+            </div>
+               
+
+            <div>
+                Adress:
+                @Html.DisplayFor(modelItem => item.Street),
+
+                @Html.DisplayFor(modelItem => item.City)
+
+                @Html.DisplayFor(modelItem => item.State)
+
+                @Html.DisplayFor(modelItem => item.ZipCode)
+
+
+            </div>
+        }
+    </div>
 </div>
-
-
-        <div class="container body-content">
-            @foreach (var item in Model.users)
-            {
-            <div class="col-xs-12 ">
-
-                <h4 class="card-header">
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </h4>
-
-                <h4 class="card-header">
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </h4>
-                <h4 class="card-header">
-                    @Html.DisplayFor(modelItem => item.Street)
-                </h4>
-                <h4 class="card-header">
-                    @Html.DisplayFor(modelItem => item.City)
-                </h4>
-                <h4 class="card-header">
-                    @Html.DisplayFor(modelItem => item.State)
-                </h4>
-            </div>
-
-
-
-            }
-        </div>
