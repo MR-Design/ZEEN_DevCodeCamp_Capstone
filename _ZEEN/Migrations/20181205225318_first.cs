@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace _ZEEN.Migrations
 {
-    public partial class initial : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -155,19 +155,65 @@ namespace _ZEEN.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Followers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FromId = table.Column<string>(nullable: true),
+                    To = table.Column<string>(nullable: true),
+                    Sender = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Followers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Followers_AspNetUsers_FromId",
+                        column: x => x.FromId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FromId = table.Column<string>(nullable: true),
+                    To = table.Column<string>(nullable: true),
+                    Message = table.Column<string>(nullable: true),
+                    DateSent = table.Column<DateTime>(nullable: false),
+                    Sender = table.Column<string>(nullable: true),
+                    Read = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Messages_AspNetUsers_FromId",
+                        column: x => x.FromId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RegularUsers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ApplicationUserId = table.Column<string>(nullable: true),
-                    Picture = table.Column<byte[]>(nullable: true),
+                    AvatarImage = table.Column<byte[]>(nullable: true),
                     Gender = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     WebSite = table.Column<string>(nullable: true),
                     Bio = table.Column<string>(maxLength: 10000, nullable: true),
+                    Street = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<int>(nullable: false)
@@ -189,30 +235,53 @@ namespace _ZEEN.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    RegularUserID = table.Column<int>(nullable: false),
                     SaleID = table.Column<string>(nullable: true),
+                    BuyerID = table.Column<string>(nullable: true),
                     Detail = table.Column<string>(nullable: true),
                     Discription = table.Column<string>(maxLength: 10000, nullable: true),
                     Category = table.Column<string>(nullable: true),
                     Gender = table.Column<string>(nullable: true),
                     Quantity = table.Column<int>(nullable: false),
-                    Size = table.Column<int>(nullable: false),
+                    Size = table.Column<double>(nullable: true),
                     Brand = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
-                    UnitPrice = table.Column<double>(nullable: true)
+                    UnitPrice = table.Column<long>(nullable: true),
+                    Statu = table.Column<bool>(nullable: false),
+                    Image = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sales", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sales_RegularUsers_RegularUserID",
-                        column: x => x.RegularUserID,
-                        principalTable: "RegularUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Sales_AspNetUsers_SaleID",
                         column: x => x.SaleID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shipments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    SellerID = table.Column<string>(nullable: true),
+                    BuyerID = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<int>(nullable: false),
+                    Shipped = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shipments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Shipments_AspNetUsers_SellerID",
+                        column: x => x.SellerID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -258,19 +327,29 @@ namespace _ZEEN.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Followers_FromId",
+                table: "Followers",
+                column: "FromId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_FromId",
+                table: "Messages",
+                column: "FromId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RegularUsers_ApplicationUserId",
                 table: "RegularUsers",
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sales_RegularUserID",
-                table: "Sales",
-                column: "RegularUserID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Sales_SaleID",
                 table: "Sales",
                 column: "SaleID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shipments_SellerID",
+                table: "Shipments",
+                column: "SellerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -291,13 +370,22 @@ namespace _ZEEN.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Sales");
+                name: "Followers");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "RegularUsers");
+
+            migrationBuilder.DropTable(
+                name: "Sales");
+
+            migrationBuilder.DropTable(
+                name: "Shipments");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

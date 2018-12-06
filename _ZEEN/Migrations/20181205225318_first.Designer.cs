@@ -10,14 +10,14 @@ using _ZEEN.Data;
 namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181127035107_addedShippingModel")]
-    partial class addedShippingModel
+    [Migration("20181205225318_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -111,6 +111,8 @@ namespace _ZEEN.Migrations
 
                     b.Property<string>("Brand");
 
+                    b.Property<string>("BuyerID");
+
                     b.Property<string>("Category");
 
                     b.Property<string>("Color");
@@ -121,6 +123,8 @@ namespace _ZEEN.Migrations
                         .HasMaxLength(10000);
 
                     b.Property<string>("Gender");
+
+                    b.Property<byte[]>("Image");
 
                     b.Property<int>("Quantity");
 
@@ -139,7 +143,7 @@ namespace _ZEEN.Migrations
                     b.ToTable("Sales");
                 });
 
-            modelBuilder.Entity("_ZEEN.Models.Shipping", b =>
+            modelBuilder.Entity("_ZEEN.Models.Shipment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,9 +169,9 @@ namespace _ZEEN.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuyerID");
+                    b.HasIndex("SellerID");
 
-                    b.ToTable("Shippings");
+                    b.ToTable("Shipments");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -378,11 +382,11 @@ namespace _ZEEN.Migrations
                         .HasForeignKey("SaleID");
                 });
 
-            modelBuilder.Entity("_ZEEN.Models.Shipping", b =>
+            modelBuilder.Entity("_ZEEN.Models.Shipment", b =>
                 {
                     b.HasOne("_ZEEN.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("BuyerID");
+                        .HasForeignKey("SellerID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
