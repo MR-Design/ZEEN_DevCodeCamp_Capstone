@@ -198,6 +198,27 @@ namespace _ZEEN.Controllers
                 {
                     _context.Update(sale);
                     await _context.SaveChangesAsync();
+
+                    //Image being  Saved
+                    string webRootPath = he.WebRootPath;
+                    var files = HttpContext.Request.Form.Files;
+
+                    var imageIdInDb = _context.Sales.Find(sale.Id);
+                    if (files[0] != null && files[0].Length > 0)
+                    {
+                        var uploads = Path.Combine(webRootPath, "images");
+                        var extension = files[0].FileName.Substring(files[0].FileName.LastIndexOf("."), files[0].FileName.Length - files[0].FileName.LastIndexOf("."));
+
+                        using (var filesstram = new FileStream(Path.Combine(uploads, sale.Id + extension), FileMode.Create))
+                        {
+                            files[0].CopyTo(filesstram);
+
+                        }
+                        imageIdInDb.Image = @"\images\" + sale.Id + extension;
+                        await _context.SaveChangesAsync();
+
+
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {

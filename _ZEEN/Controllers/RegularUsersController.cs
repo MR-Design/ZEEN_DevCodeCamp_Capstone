@@ -231,9 +231,7 @@ public class RegularUsersController : Controller
                 user = new RegularUser()
 
             };
-
-          
-            view.user = RegularUsers;     
+          view.user = RegularUsers;     
 
             return View(view);
         }
@@ -262,6 +260,28 @@ public class RegularUsersController : Controller
             view.user.State = collection["user.State"];
             view.user.ZipCode = Int32.Parse(collection["user.ZipCode"]);
 
+            _context.SaveChanges();
+
+            //Image being  Saved
+            string webRootPath = he.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            var imageIdInDb = _context.RegularUsers.Find(view.user.Id);
+            if (files[0] != null && files[0].Length > 0)
+            {
+                var uploads = Path.Combine(webRootPath, "images");
+                var extension = files[0].FileName.Substring(files[0].FileName.LastIndexOf("."), files[0].FileName.Length - files[0].FileName.LastIndexOf("."));
+
+                using (var filesstram = new FileStream(Path.Combine(uploads, view.user.Id + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filesstram);
+
+                }
+                imageIdInDb.AvatarImage = @"\images\" + view.user.Id + extension;
+
+
+            }
+          
             _context.SaveChanges();
             return RedirectToAction("UserDetails", "RegularUsers");
         }
