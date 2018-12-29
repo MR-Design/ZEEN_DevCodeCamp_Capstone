@@ -12,7 +12,7 @@
 @*@using (Html.BeginForm("Create", "Sales", FormMethod.Post, new { @enctype = "multipart/form-data" }))
     {*@
 <div class="row">
-    <form asp-action="Create">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
 
         <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -67,9 +67,12 @@
                 <input asp-for="UnitPrice" class="form-control" />
                 <span asp-validation-for="UnitPrice" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="file" name="files" multiple />
+            </div>
         </div>
 
-        <input type="file" name="picture" multiple value="Picture" />
         <br />
         <div class="form-group">
             <input type="submit" value="Sell" class="btn btn-primary" />

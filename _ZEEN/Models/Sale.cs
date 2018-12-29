@@ -41,7 +41,7 @@ namespace _ZEEN.Models
         public long? UnitPrice { get; set; }
 
         public bool Statu { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
     }
 }

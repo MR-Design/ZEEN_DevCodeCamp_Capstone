@@ -13,16 +13,19 @@ using Korzh.EasyQuery.Linq;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 
 namespace _ZEEN.Controllers
 {
     public class SalesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment he;
 
-        public SalesController(ApplicationDbContext context)
+        public SalesController (ApplicationDbContext context, IHostingEnvironment e)
         {
             _context = context;
+            he = e;
         }
         // GET: Saller Inedx Page
         public IActionResult Listing()
@@ -132,8 +135,27 @@ namespace _ZEEN.Controllers
               
                 _context.Add(sale);
                 await _context.SaveChangesAsync();
+                //Image being  Saved
+                string webRootPath = he.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
 
-              
+                var imageIdInDb = _context.Sales.Find(sale.Id);
+                if (files[0] != null && files[0].Length > 0)
+                {
+                    var uploads = Path.Combine(webRootPath, "images");
+                    var extension = files[0].FileName.Substring(files[0].FileName.LastIndexOf("."), files[0].FileName.Length - files[0].FileName.LastIndexOf("."));
+
+                    using (var filesstram = new FileStream(Path.Combine(uploads, sale.Id + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(filesstram);
+
+                    }
+                    imageIdInDb.Image = @"\images\" + sale.Id + extension;
+                    await _context.SaveChangesAsync();
+
+
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(sale);

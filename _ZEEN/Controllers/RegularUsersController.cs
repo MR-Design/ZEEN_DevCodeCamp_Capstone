@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using _ZEEN.Models.ViewModels;
+using _ZEEN.Utility;
 
 namespace _ZEEN.Controllers
 {
@@ -188,18 +189,28 @@ public class RegularUsersController : Controller
                     var uploads = Path.Combine(webRootPath, "images");
                     var extension = files[0].FileName.Substring(files[0].FileName.LastIndexOf("."), files[0].FileName.Length - files[0].FileName.LastIndexOf("."));
 
-                        using (var filesstram = new FileStream(Path.Combine(uploads, regularUser.Id + extension), FileMode.Create))
-                        {
-                            files[0].CopyTo(filesstram);
+                    using (var filesstram = new FileStream(Path.Combine(uploads, regularUser.Id + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(filesstram);
 
-                        }
-                        imageIdInDb.AvatarImage = @"\images\" + regularUser.Id + extension;
-                        await _context.SaveChangesAsync();
+                    }
+                    imageIdInDb.AvatarImage = @"\images\" + regularUser.Id + extension;
 
-                    return RedirectToAction("Index", "Sales");
-                 }
 
-           
+                }
+                //else
+                //{
+                //    var uploads = Path.Combine(webRootPath, @"\images\" + SD.DefaultProfileImage);
+                //    System.IO.File.Copy(uploads, webRootPath + @"\images\" + regularUser.Id + ".png");
+
+                //    imageIdInDb.AvatarImage = @"\images\" + regularUser.Id + ".png";
+
+                //}
+                await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Sales");
+
+
             }
 
 
@@ -292,19 +303,7 @@ public class RegularUsersController : Controller
             return _context.RegularUsers.Any(e => e.Id == id);
         }
 
-        private async Task<Sale> StoreHomePicture(Sale img, IFormFile picture)
-        {
-            if (picture != null)
-            {
-                using (var stream = new System.IO.MemoryStream())
-                {
-                    await picture.CopyToAsync(stream);
-                    img.Image = stream.ToArray();
-
-                }
-            }
-            return img;
-        }
+     
     }
 
 
