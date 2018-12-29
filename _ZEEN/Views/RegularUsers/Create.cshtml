@@ -10,22 +10,14 @@
 
 
 <div class="row">
-    <form method="post" enctype="multipart/form-data" asp-controller="UploadFiles" asp-action="Index">
-        <div class="form-group">
-            <div class="col-md-10">
-                <p>Upload one or more files using this form:</p>
-                <input type="file" name="files" multiple />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" value="Upload" />
-            </div>
-        </div>
-    </form>
+
 
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="AvatarImage" class="control-label"></label>
+                <input type="file" name="files" multiple />
+            </div>
 
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
@@ -79,7 +71,7 @@
                 <input asp-for="ZipCode" class="form-control" />
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
-          
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -102,31 +94,31 @@
 
 @*Drope ZoneImageUploeder Exemple
 
-<div class="row">
-    <div class="col-md-9">
-        <div id="dropzone">
-            <form asp-action="Create" asp-controller="RegularUsers" class="dropzone needsclick dz-clickable" id="uploader">
-                <div class="dz-message needsclick">
-                    Drop files here or click to upload.<br>
-                </div>
-            </form>
+    <div class="row">
+        <div class="col-md-9">
+            <div id="dropzone">
+                <form asp-action="Create" asp-controller="RegularUsers" class="dropzone needsclick dz-clickable" id="uploader">
+                    <div class="dz-message needsclick">
+                        Drop files here or click to upload.<br>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    $(document).ready(function () {
-        Dropzone.options.uploader = {
-            paramName: "file",
-            maxFilesize: 2,
-            accept: function (file, done) {
-                if (file.name == "test.jpg") {
-                    alert("Can't upload a test file.");
+    <script>
+        $(document).ready(function () {
+            Dropzone.options.uploader = {
+                paramName: "file",
+                maxFilesize: 2,
+                accept: function (file, done) {
+                    if (file.name == "test.jpg") {
+                        alert("Can't upload a test file.");
+                    }
+                    else {
+                        //Show a confirm alert and display the image on the page.
+                    }
                 }
-                else {
-                    //Show a confirm alert and display the image on the page.
-                }
-            }
-        };
-    });
-</script>*@
+            };
+        });
+    </script>*@

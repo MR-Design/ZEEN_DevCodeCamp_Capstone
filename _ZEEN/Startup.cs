@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Korzh.EasyQuery.AspNetCore;
 using _ZEEN.Models;
 using Stripe;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace _ZEEN
 {
@@ -30,6 +32,7 @@ namespace _ZEEN
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+          
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -54,6 +57,8 @@ namespace _ZEEN
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+          
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

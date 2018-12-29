@@ -71,7 +71,7 @@ namespace _ZEEN.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<byte[]>("AvatarImage");
+                    b.Property<string>("AvatarImage");
 
                     b.Property<string>("Bio")
                         .HasMaxLength(10000);

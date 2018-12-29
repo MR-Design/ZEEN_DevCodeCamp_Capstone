@@ -26,41 +26,9 @@ public class RegularUsersController : Controller
             _context = context;
             he = e;
         }
-        [HttpPost("UploadFiles")]
-        public async Task<IActionResult> Post(List<IFormFile> files)
-        {
-            long size = files.Sum(f => f.Length);
-            // full path to file in temp location
-            var filePath = Path.GetTempFileName();
+       
 
-            foreach (var formFile in files)
-            {
-                if (formFile.Length > 0)
-                {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-                }
-            }
-
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
-            return Ok(new { count = files.Count, size, filePath });
-        }
-
-        //public IActionResult ShowFields(string fullname, IFormFile pic)
-        //{
-        //    ViewData["fname"] = fullname;
-        //    if (pic !=null)
-        //    {
-        //        var fileName = Path.Combine(he.WebRootPath, Path.GetDirectoryName(pic.FileName));
-        //        pic.CopyTo(new FileStream(fileName, FileMode.Create));
-        //            ViewData["fileLocation"] ="/"+ Path.GetFileName(pic.FileName);
-        //    }
-        //    return View();
-        
-        // GET: RegularUsers
+  
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.RegularUsers.Include(r => r.ApplicationUser);
@@ -200,20 +168,45 @@ public class RegularUsersController : Controller
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,Image,Gender,UserName,Bio,WebSite,FirstName,LastName,Street,City,State,ZipCode")] RegularUser regularUser)
+        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,AvatarImage,Gender,UserName,Bio,WebSite,FirstName,LastName,Street,City,State,ZipCode")] RegularUser regularUser)
         {
 
-                RegularUser rUser = _context.RegularUsers.Where(s => s.ApplicationUserId == User.Identity.GetUserId().ToString()).SingleOrDefault();
+             RegularUser rUser = _context.RegularUsers.Where(s => s.ApplicationUserId == User.Identity.GetUserId().ToString()).SingleOrDefault();
             regularUser.ApplicationUserId = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 _context.Add(regularUser);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Sales");
+
+                //Image being  Saved
+                string webRootPath = he.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+                var imageIdInDb = _context.RegularUsers.Find(regularUser.Id);
+                if (files[0] != null && files[0].Length > 0)
+                {
+                    var uploads = Path.Combine(webRootPath, "images");
+                    var extension = files[0].FileName.Substring(files[0].FileName.LastIndexOf("."), files[0].FileName.Length - files[0].FileName.LastIndexOf("."));
+
+                        using (var filesstram = new FileStream(Path.Combine(uploads, regularUser.Id + extension), FileMode.Create))
+                        {
+                            files[0].CopyTo(filesstram);
+
+                        }
+                        imageIdInDb.AvatarImage = @"\images\" + regularUser.Id + extension;
+                        await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Sales");
+                 }
+
+           
             }
 
 
+
             ViewData["ApplicationUserId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", regularUser.ApplicationUserId);
+
+
             return View(regularUser);
         }
 

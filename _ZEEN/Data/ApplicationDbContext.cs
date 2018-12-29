@@ -22,5 +22,7 @@ namespace _ZEEN.Data
         public DbSet<Shipment> Shipments { get; set; }
 
 
+
+
     }
 }

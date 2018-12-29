@@ -10,8 +10,8 @@ using _ZEEN.Data;
 namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181205225318_first")]
-    partial class first
+    [Migration("20181229005830_newMigration")]
+    partial class newMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,7 +73,7 @@ namespace _ZEEN.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<byte[]>("AvatarImage");
+                    b.Property<string>("AvatarImage");
 
                     b.Property<string>("Bio")
                         .HasMaxLength(10000);
