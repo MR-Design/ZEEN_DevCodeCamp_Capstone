@@ -1,0 +1,65 @@
+﻿@model _ZEEN.Models.ViewModels.SellerViewModel
+
+@{
+    ViewData["Title"] = "Listing";
+}
+
+
+
+
+    <h5> Seller dashboard</h5>
+
+
+<div class="container body-content">
+    <div class=" col-xs-6">
+        @foreach (var item in Model.sales)
+        {
+
+
+
+                <div class="card mb-3">
+                    @*<a asp-action="Details" asp-route-id="@item.Id" style="color:black">*@
+
+                    <h4 class="card-header">
+                        @Html.DisplayFor(modelItem => item.Detail)
+                    </h4>
+
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                    </div>
+                    @*</a>*@
+                    <img style="height: 75px; width: 15%; display: block;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image">
+                    <div class="card-body">
+                        <a class="card-link" style="font-weight:900;">
+                            $ @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </a>
+                        <a class="card-link">@Html.DisplayFor(modelItem => item.Gender)</a>
+                        <a class="card-link">
+                            @Html.DisplayNameFor(model => model.sale.Size)
+                            @Html.DisplayFor(modelItem => item.Size)
+                        </a> |
+                        <a class="card-link">@Html.DisplayFor(modelItem => item.Brand)</a>
+
+                    </div>
+
+
+                    <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-danger">Cancel</a> 
+                    <br />
+                    <span style="color:rgba(128, 128, 128,.3)"><strong>ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ</strong> </span>
+
+                </div>
+
+
+
+
+            <div class="col-xs-6 ">
+
+            </div>
+
+        }
+
+    </div>
+
+
+    
+</div>

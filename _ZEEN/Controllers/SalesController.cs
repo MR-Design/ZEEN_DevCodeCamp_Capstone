@@ -46,6 +46,24 @@ namespace _ZEEN.Controllers
             //view.users = _context.RegularUsers.ToList();
             return View(view);
         }
+
+        // GET: Saller Inedx Page
+        public IActionResult Orders()
+        {
+            SellerViewModel view = new SellerViewModel();
+            List<Sale> sales = new List<Sale>();
+            List<RegularUser> users = new List<RegularUser>();
+            //Items boutgh By user
+            view.sales = _context.Sales.Where(s => s.BuyerID == User.Identity.GetUserId()).ToList();
+
+       
+            return View(view);
+        }
+
+
+
+
+
         // GET: User Index Page Based on Search and Filtring
         public  IActionResult Index(string searchString, string Men, string Woman, string Clothing, string Shoes, string Jewelry,string Watches)
         {
@@ -270,9 +288,8 @@ namespace _ZEEN.Controllers
             return _context.Sales.Any(e => e.Id == id);
         }
 
-       
 
-        
+
 
     }
 }

@@ -64,7 +64,6 @@
 
 
     <div class="col-xs-6">
-       <strong><h5>Confirm Shipping For</h5></strong> 
         @*@foreach (var item in Model.sales)
         {
 
@@ -73,7 +72,7 @@
         @*@Html.DisplayNameFor(model => model.sale.Detail)*@
         @foreach (var item in Model.users)
         {
-
+            <strong> Your Buyer Informations: </strong>
             <div>
                 Full Name :
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -81,7 +80,7 @@
 
                 @Html.DisplayFor(modelItem => item.LastName)
             </div>
-               
+
 
             <div>
                 Adress:
@@ -96,5 +95,30 @@
 
             </div>
         }
+     
+            @foreach (var item in Model.sales)
+            {
+
+                <div class="Row">
+                    <strong> You  Sold : </strong>
+                    @Html.DisplayFor(modelItem => item.Detail)<br />
+
+                    @Html.DisplayFor(modelItem => item.Discription)
+                    <span> Prise Sold : $  </span>  @Html.DisplayFor(modelItem => item.UnitPrice)
+
+
+                    <img style="height: 200px; width: 100%; display: block;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image">
+                </div>
+                <a asp-action="Ship" asp-route-id="@item.Id" class="btn btn-info">Ship Item</a>
+
+            }
+
+
+
+
+
+        
+
     </div>
 </div>
+

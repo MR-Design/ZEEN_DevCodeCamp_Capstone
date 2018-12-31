@@ -12,39 +12,45 @@
 <br />
 <br />
 
-@foreach (var item in Model.messages)
-{
-    //int count = 0;
-    if (Model.messages.Count >0) {
-<div class="form-group">
-    <span class="help-block">Sent From @Html.DisplayFor(modelItem => item.Sender)</span>
+    @foreach (var item in Model.messages)
+    {
+        //int count = 0;
+        if (Model.messages.Count > 0)
+        {
 
-    <label for="textArea" class="col-lg-2 control-label">
-        @Html.DisplayNameFor(model => model.message.Message)
-    </label>
-    <div class="col-lg-10">
-        <textarea class="form-control" rows="3" id="textArea"> @Html.DisplayFor(modelItem => item.Message)</textarea>
-        <span class="help-block">Sent On @Html.DisplayFor(modelItem => item.DateSent)</span>
-    </div>
-</div>
+            <fieldset class="form-group" disabled >
+
+                <span class="help-block">Sent From @Html.DisplayFor(modelItem => item.Sender)</span>
+
+                <label for="textArea" class="col-lg-2 control-label ">
+                    @Html.DisplayNameFor(model => model.message.Message)
+                </label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="3" id="textArea"> @Html.DisplayFor(modelItem => item.Message)</textarea>
+                    <span class="help-block">Sent On @Html.DisplayFor(modelItem => item.DateSent)</span>
+                </div>
+            </fieldset>
 
 
-    <tr>
-       
+            <tr>
 
-        <td>
-            @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-        </td>
-    </tr>
-    }else{
-        <div class="form-group">
-   
-    <div class="col-lg-10">
-        No Message
-    </div>
-</div>
+
+                <td>
+                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+
+        }
+        else
+        {
+            <div class="form-group">
+
+                <div class="col-lg-10">
+                    No Message
+                </div>
+            </div>
+        }
     }
-}
 
 

@@ -6,135 +6,56 @@
 
 
 
-<div class="container-fluid">
-    <div class="col-xs-12">
+<div class="container-fluid text-center">
 
-        <hr />
-        <style>
+    <hr />
 
-            img {
-                border-radius: 50%;
-                width: 200px;
-                height: 200px;
-                text-align: center;
+    <div class="row">
+        <img src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Avatar">
 
-            }
-        </style>
+        <h4 class="lead" style="padding-top:5px;">
+            @Html.DisplayFor(model => model.user.UserName)
 
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Avatar">
-
-                    <h4 class="modal-title" style="padding-top:5px;">
-                        @Html.DisplayFor(model => model.user.UserName)
-
-                    </h4>
-                </div>
-                <div class="modal-body" style="font-size:15px; color:black;">
-                    @Html.DisplayNameFor(model => model.user.FirstName)
-                    @Html.DisplayFor(model => model.user.FirstName)<br />
-
-
-                    @Html.DisplayNameFor(model => model.user.LastName): @Html.DisplayFor(model => model.user.LastName)<br />
-                    Gender: @Html.DisplayFor(model => model.user.Gender)<br />
-
-                    @Html.DisplayNameFor(model => model.user.Bio): @Html.DisplayFor(model => model.user.Bio)<br />
-                    Website: @Html.DisplayFor(model => model.user.WebSite)<br />
-
-                    Address: @Html.DisplayFor(model => model.user.Street)
-
-                    @Html.DisplayFor(model => model.user.City),
-
-                  @Html.DisplayFor(model => model.user.State)
-
-                   @Html.DisplayFor(model => model.user.ZipCode)
-                </div>
-                <div class="modal-footer">
-                    <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-primary">Edit Profile</a>
-                </div>
-            </div>
-        </div>
+        </h4>
     </div>
+
+   
+    <div class="row" style="font-size:15px; color:black;">
+
+        @Html.DisplayNameFor(model => model.user.FirstName)
+        @Html.DisplayFor(model => model.user.FirstName)<br /><br />
+
+
+        @Html.DisplayNameFor(model => model.user.LastName): @Html.DisplayFor(model => model.user.LastName)<br /><br />
+        Gender: @Html.DisplayFor(model => model.user.Gender)<br /><br />
+
+        @Html.DisplayNameFor(model => model.user.Bio): @Html.DisplayFor(model => model.user.Bio)<br /><br />
+        Website: @Html.DisplayFor(model => model.user.WebSite)<br /><br />
+
+        Address: @Html.DisplayFor(model => model.user.Street)
+
+        @Html.DisplayFor(model => model.user.City),
+
+        @Html.DisplayFor(model => model.user.State)
+
+        @Html.DisplayFor(model => model.user.ZipCode)
+        <br />
+        <br />
+
+        <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-info">Edit Profile</a>
+
+    </div>
+    
 </div>
-@*<dl class="dl-horizontal">
 
 
 
-            <dt>
-                @Html.DisplayNameFor(model => model.user.UserName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.UserName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.FirstName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.FirstName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.LastName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.LastName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.Gender)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.Gender)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.Bio)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.Bio)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.WebSite)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.WebSite)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.State)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.Street)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.City)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.City)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.State)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.State)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.user.ZipCode)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.user.ZipCode)
-            </dd>
-           <dt>
-                <span> Number of followers</span>
-            </dt>
-            <dd>
-                @ViewData["Followers"]
-            </dd>
-        </dl>
-    </div>
+<style>
 
-        <div>
-
-            <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-default">Edit</a>
-        </div>
-    </div>*@
-
-
+    img {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+    }
+</style>
