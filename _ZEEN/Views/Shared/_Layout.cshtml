@@ -39,9 +39,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Sales" asp-action="Index">Salles</a></li>
-
-                    <li><a asp-area="" asp-controller="Sales" asp-action="Listing">My Listing</a></li>
                     <li><a asp-area="" asp-controller="Sales" asp-action="Orders">Orders History</a></li>
+                    <li><a asp-area="" asp-controller="Sales" asp-action="ManageOrders">Manage Orders</a></li>
+
 
 
                 </ul>
@@ -59,7 +59,7 @@
 
 
     </div>
-   
+
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -97,6 +97,7 @@
                     color: #151414;
                     background-color: #dbdbdb;
                 }
+
         .bg4 {
             background-color: #dbdbdb;
             width: 100%;
@@ -107,17 +108,17 @@
         }
 
         body {
-            font-family:Arial, sans-serif;
+            font-family: Arial, sans-serif;
             font-size: 14px;
             line-height: 1.42857143;
             color: #333;
             background-color: #fff;
         }
     </style>
+    <footer class="container-fluid bg4">
+        <p style="text-align:center; margin-top:12%; font-size:15px"> <span> &copy </span> ZEEN</p>
 
+    </footer>
 </body>
-<footer class="container-fluid bg4">
-    <p style="text-align:center; margin-top:12%; font-size:15px"> <span> &copy </span> ZEEN</p>
 
-</footer>
 </html>

@@ -38,13 +38,10 @@ namespace _ZEEN.Models
         public string Color { get; set; }
 
         [Display(Name = "Price")]
-        public long? UnitPrice { get; set; }
+        public double UnitPrice { get; set; }
 
-        public bool Statu { get; set; }
-        public bool IsSold { get; set; }
-        public bool IsShipped { get; set; }
-        public bool IsCancled { get; set; }
-        public bool IsReceived { get; set; }
+        public string Statu { get; set; }
+      
 
         public string Image { get; set; }
 

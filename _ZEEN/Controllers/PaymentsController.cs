@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using _ZEEN.Data;
 using _ZEEN.Models;
 using _ZEEN.Models.ViewModels;
+using _ZEEN.Utility;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
@@ -54,10 +55,7 @@ namespace _ZEEN.Controllers
 
             //view.shipment.FirstName = view.user.FirstName;
             //_context.RegularUsers.Select(x=>x.LastName == view.shipping.LastName).SingleOrDefault();
-            var userInDb = _context.Sales.Where(a => a.Id == id).Single();
-            userInDb.BuyerID = User.Identity.GetUserId();
 
-            _context.SaveChanges();
             var customers = new CustomerService();
             var charges = new ChargeService();
 
@@ -75,6 +73,11 @@ namespace _ZEEN.Controllers
                 Currency = "usd",
                 CustomerId = customer.Id
             });
+            var userInDb = _context.Sales.Where(a => a.Id == id).Single();
+            userInDb.BuyerID = User.Identity.GetUserId();
+            var StatusInDb = _context.Sales.Where(a => a.Id == id).Single();
+            StatusInDb.Statu = SD.StatusSold;
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "Sales");
         }

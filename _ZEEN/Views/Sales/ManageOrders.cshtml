@@ -1,0 +1,72 @@
+﻿@model _ZEEN.Models.ViewModels.SellerViewModel
+
+@{
+    ViewData["Title"] = "Manage Orders";
+}
+
+
+
+
+  
+<div class="container body-content">
+   
+        <div class="col-md-6">
+
+            <hr />
+
+            @foreach (var item in Model.users)
+            {
+                <div>
+                    <strong>Please Ship it To </strong> : @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)
+                </div>
+
+
+                <div>
+                    Adress:
+                    @Html.DisplayFor(modelItem => item.Street),
+
+                    @Html.DisplayFor(modelItem => item.City)
+
+                    @Html.DisplayFor(modelItem => item.State)
+
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+
+
+                </div>
+            }
+
+            @foreach (var item in Model.sales)
+            {
+
+                <div class="Row">
+                    @Html.DisplayFor(modelItem => item.Detail)<br />
+
+                    <span> Price : $  </span>  @Html.DisplayFor(modelItem => item.UnitPrice)
+
+
+                    <img style="height: 100px; width: 30%; display: block;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image">
+                </div>
+                <br />
+                <div class="form-group">
+                    <a asp-action="Ship" asp-route-id="@item.Id" class="btn btn-info">Ship Item</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Update</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Remove</a>
+
+                </div>
+                <hr>
+            }
+
+
+
+
+
+
+
+
+
+        </div>
+    
+  
+
+</div>
+

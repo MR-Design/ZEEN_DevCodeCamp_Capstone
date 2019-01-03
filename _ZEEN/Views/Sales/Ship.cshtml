@@ -1,0 +1,80 @@
+﻿@model _ZEEN.Models.ViewModels.SellerViewModel
+
+@{
+    ViewData["Title"] = "Shipping ";
+}
+
+
+
+
+  
+<div class="container body-content">
+  <h3> Shipping Confirmation </h3>
+  <div class="col-md-6">
+      @if (Model.sale.Statu == "Sold")
+      {
+      
+          <div>
+              <strong>Please Ship it To </strong> : @Html.DisplayFor(model => model.user.FirstName)  @Html.DisplayFor(model => model.user.LastName)
+          </div>
+          <div>
+              Adress:
+              @Html.DisplayFor(model => model.user.Street),
+
+              @Html.DisplayFor(model => model.user.City)
+
+              @Html.DisplayFor(model => model.user.State)
+
+              @Html.DisplayFor(model => model.user.ZipCode)
+
+
+          </div>
+
+
+
+
+          <div class="Row">
+              @Html.DisplayFor(model => model.sale.Detail)<br />
+
+              <span> Price : $  </span>  @Html.DisplayFor(model => model.sale.UnitPrice)
+
+
+              <img style="height: 100px; width: 30%; display: block;" src="@Html.DisplayFor(model => model.sale.Image)" alt="Card image">
+          </div>
+          <br />
+
+          <h3> You will receive your Payment As soon As the buyer receive his order </h3>
+          <h3>  Thank you </h3>
+
+          <form asp-action="Ship">
+              <input type="submit" value="Ship Now" class="btn btn-default" /> |
+              <a asp-action="Index" class="btn btn-danger">Later</a>
+          </form>
+
+
+          <hr>
+      }
+      else
+      {
+          <h5 class="lead"> No order Sold </h5>
+
+
+      }
+      <hr />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using _ZEEN.Utility;
 
 namespace _ZEEN.Controllers
 {
@@ -39,11 +40,30 @@ namespace _ZEEN.Controllers
             //Buyer Informations
 
             //Informations of Users that bought Items (ApplicationUserID in UserTable ==BuyerID in Sales Table)
-            var appUserIds = view.sales.Select(s => s.BuyerID).ToList();
+            var appUserIds = view.sales.Select(s => s.SaleID).ToList();
+            
             view.users = _context.RegularUsers.Where(r => appUserIds.Contains(r.ApplicationUserId)).ToList();
 
             // just to check the view
             //view.users = _context.RegularUsers.ToList();
+            return View(view);
+        }
+        // GET: Saller Inedx Page
+        public IActionResult ManageOrders()
+        {
+            SellerViewModel view = new SellerViewModel();
+            List<Sale> sales = new List<Sale>();
+            List<RegularUser> users = new List<RegularUser>();
+            //Items Listed By the Seller
+            view.sales = _context.Sales.Where(s => s.SaleID == User.Identity.GetUserId()).ToList();
+
+            //Buyer Informations
+
+            //Informations of Users that bought Items (ApplicationUserID in UserTable ==BuyerID in Sales Table)
+            var appUserIds = view.sales.Select(s => s.BuyerID).ToList();
+
+            view.users = _context.RegularUsers.Where(r => appUserIds.Contains(r.ApplicationUserId)).ToList();
+
             return View(view);
         }
 
@@ -53,50 +73,98 @@ namespace _ZEEN.Controllers
             SellerViewModel view = new SellerViewModel();
             List<Sale> sales = new List<Sale>();
             List<RegularUser> users = new List<RegularUser>();
-            //Items boutgh By user
-            view.sales = _context.Sales.Where(s => s.BuyerID == User.Identity.GetUserId()).ToList();
+            view.sales = _context.Sales.Where(s => s.BuyerID == User.Identity.GetUserId()&& s.Statu==SD.StatusSold).ToList();
 
        
             return View(view);
+        }
+        // GET: 
+        public IActionResult CancelOrders(int? id)
+        {
+            SellerViewModel view = new SellerViewModel()
+            {
+                sale = new Sale(),
+                user = new RegularUser()
+            };
+            view.sale = _context.Sales.Where(s => s.Id == id).SingleOrDefault();
+
+            //Show who Pasted the Sale
+
+
+            return View(view);
+        }
+
+        // Post: 
+        [HttpPost]
+        public IActionResult CancelOrders(int? id, SellerViewModel view)
+        {
+            view = new SellerViewModel()
+            {
+                sale = new Sale(),
+                user = new RegularUser()
+            };
+            view.sale = _context.Sales.Where(s => s.Id == id).SingleOrDefault();
+
+            var StatusInDb = _context.Sales.Where(a => a.Id == id).SingleOrDefault();
+            StatusInDb.Statu = SD.StatusCancelled;
+            _context.Update(view.sale);
+             _context.SaveChanges();
+
+            return RedirectToAction("Orders", "Sales");
         }
 
 
 
 
 
+        // GET: 
+        public IActionResult Ship(int? id, SellerViewModel view)
+        {
+             view = new SellerViewModel();
+            List<Sale> sales = new List<Sale>();
+            List<RegularUser> users = new List<RegularUser>();
+
+            view.sale = _context.Sales.Where(s => s.Id == id).SingleOrDefault();
+
+            view.sales = _context.Sales.Where(s => s.SaleID == User.Identity.GetUserId() &&s.Statu!=SD.StatusShipped).ToList();
+
+            var appUserIds = view.sales.Select(s => s.BuyerID).ToList();
+
+            view.users = _context.RegularUsers.Where(r => appUserIds.Contains(r.ApplicationUserId)).ToList();
+
+            return View(view);
+        }
+
+        // Post: 
+        [HttpPost]
+        public IActionResult Ship(int? id)
+        {
+            SellerViewModel view = new SellerViewModel()
+            {
+                sale = new Sale(),
+                user = new RegularUser()
+            };
+            view.sale = _context.Sales.Where(s => s.Id == id).SingleOrDefault();
+            var UserLogedin = User.Identity.GetUserId();
+            var StatusInDb = _context.Sales.Where(a => a.Id == id).SingleOrDefault();
+            StatusInDb.Statu = SD.StatusShipped;
+            var UserInDb = _context.RegularUsers.Where(u => u.ApplicationUserId == UserLogedin).SingleOrDefault();
+            UserInDb.Wallet = UserInDb.Wallet + view.sale.UnitPrice;
+
+            _context.Update(view.sale);
+            _context.SaveChanges();
+
+            return RedirectToAction("Orders", "Sales");
+        }
         // GET: User Index Page Based on Search and Filtring
-        public  IActionResult Index(string searchString, string Men, string Woman, string Clothing, string Shoes, string Jewelry,string Watches)
+        public IActionResult Index(string searchString, string Men, string Woman, string Clothing, string Shoes, string Jewelry,string Watches)
         {
             SellerViewModel view = new SellerViewModel();
             List<Sale> sales = new List<Sale>();
-            view.sales = _context.Sales.ToList();
+            view.sales = _context.Sales.Where(s=>s.Statu ==SD.StatusForSale || s.Statu == SD.StatusCancelled).ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
-                view.sales = _context.Sales.FullTextSearchQuery(searchString).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Men))
-            {
-                view.sales = _context.Sales.Where(s => s.Gender == Men).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Woman))
-            {
-                view.sales = _context.Sales.Where(s=>s.Gender ==Woman).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Clothing))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Clothing).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Shoes))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Shoes).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Jewelry))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Jewelry).ToList();
-            }
-            else if (!String.IsNullOrEmpty(Watches))
-            {
-                view.sales = _context.Sales.Where(s => s.Category == Watches).ToList();
+                view.sales = _context.Sales.FullTextSearchQuery(searchString).Where(s => s.Statu == SD.StatusForSale || s.Statu == SD.StatusCancelled).ToList();
             }
             return View(view);
         }
@@ -105,9 +173,7 @@ namespace _ZEEN.Controllers
         // GET: Sales/Details/
         public IActionResult Details(int? id, SellerViewModel view)
         {
-           // var currentUser = User.Identity.GetUserId();
 
-            
             view = new SellerViewModel()
             {
                 sale = new Sale(),
@@ -117,10 +183,6 @@ namespace _ZEEN.Controllers
 
            //Show who Pasted the Sale
             view.user = _context.RegularUsers.Where(s => s.ApplicationUserId == view.sale.SaleID).SingleOrDefault();
-
-
-
-
 
             return View(view);
         }
@@ -148,6 +210,7 @@ namespace _ZEEN.Controllers
           
 
             sale.SaleID = currentUser;
+            sale.Statu = SD.StatusForSale;
             if (ModelState.IsValid)
             {
               

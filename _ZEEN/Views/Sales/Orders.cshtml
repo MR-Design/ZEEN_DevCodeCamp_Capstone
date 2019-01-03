@@ -1,7 +1,7 @@
 ﻿@model _ZEEN.Models.ViewModels.SellerViewModel
 
 @{
-    ViewData["Title"] = "Listing";
+    ViewData["Title"] = "Orders";
 }
 
 
@@ -43,7 +43,7 @@
                     </div>
 
 
-                    <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-danger">Cancel</a> 
+                    <a asp-action="CancelOrders" asp-route-id="@item.Id" class="btn btn-danger">Cancel</a> 
                     <br />
                     <span style="color:rgba(128, 128, 128,.3)"><strong>ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ</strong> </span>
 

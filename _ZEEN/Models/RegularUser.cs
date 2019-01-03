@@ -44,7 +44,9 @@ namespace _ZEEN.Models
         public string State { get; set; }
         [Display(Name = "Zip code")]
         public int ZipCode { get; set; }
+        public double Wallet { get; set; }
 
-       
+
+
     }
 }

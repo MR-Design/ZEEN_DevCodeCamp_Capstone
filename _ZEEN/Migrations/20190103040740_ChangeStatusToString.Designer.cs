@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _ZEEN.Data;
 
 namespace _ZEEN.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190103040740_ChangeStatusToString")]
+    partial class ChangeStatusToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,8 +92,6 @@ namespace _ZEEN.Migrations
 
                     b.Property<string>("UserName");
 
-                    b.Property<double>("Wallet");
-
                     b.Property<string>("WebSite");
 
                     b.Property<int>("ZipCode");
@@ -134,7 +134,7 @@ namespace _ZEEN.Migrations
 
                     b.Property<string>("Statu");
 
-                    b.Property<double>("UnitPrice");
+                    b.Property<long?>("UnitPrice");
 
                     b.HasKey("Id");
 
