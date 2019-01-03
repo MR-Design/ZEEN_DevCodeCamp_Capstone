@@ -59,48 +59,42 @@ public class RegularUsersController : Controller
         // GET: Fellowers
         public IActionResult Follow()
         {
-
             UserViewModel view = new UserViewModel()
             {
                 follower = new Follower()
-
             };
-           
+            var followers = _context.Followers.Select(f => f.FromId).ToList();
+            foreach (var item in followers)
+            {
+                if (item.Count() != item.Distinct().Count())
+                {
+                    ViewData["Followers"] = followers.Count();
 
-            ViewData["Followers"] = _context.Followers.Count();
-
-            //id = view.user.ApplicationUserId;
-           
-
+                }
+            }
+ 
             if (view.user == null)
             {
                 return NotFound();
             }
-
             return View(view);
         }
         [HttpPost]
         public IActionResult Follow(UserViewModel view)
         {
-            //view = new UserViewModel()
-            //{
-            //    message = new Messages()
-            //};
-            //view.message = messages; // not good
+     
 
             var currentUser = User.Identity.GetUserId();
             view.follower.FromId = currentUser;
-            //view.message.Sender = view.user.UserName;
-
-            // view.message.To = _context.RegularUsers.Where(x => x.UserName ==).SingleOrDefault();
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && User.Identity.GetUserId()!= view.follower.To)
             {
                 _context.Followers.Add(view.follower);
 
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Sales");
             }
-            return RedirectToAction();
+
+            return RedirectToAction("Index", "Sales");
         }
 
         // GET: RegularUsers/Details/5
