@@ -46,6 +46,9 @@ namespace _ZEEN.Models
         public int ZipCode { get; set; }
         public double Wallet { get; set; }
 
+        public double TotalMoneyMade { get; set; }
+
+
 
 
     }

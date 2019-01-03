@@ -14,7 +14,10 @@
         <img src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Avatar">
 
         <h4 class="lead" style="padding-top:5px;">
-            @Html.DisplayFor(model => model.user.UserName)
+            @Html.DisplayFor(model => model.user.UserName)  <br />
+            <hr />
+            Balance : $@Html.DisplayFor(model => model.user.Wallet)
+
 
         </h4>
     </div>

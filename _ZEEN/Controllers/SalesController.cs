@@ -150,6 +150,8 @@ namespace _ZEEN.Controllers
             StatusInDb.Statu = SD.StatusShipped;
             var UserInDb = _context.RegularUsers.Where(u => u.ApplicationUserId == UserLogedin).SingleOrDefault();
             UserInDb.Wallet = UserInDb.Wallet + view.sale.UnitPrice;
+            UserInDb.TotalMoneyMade = UserInDb.TotalMoneyMade + view.sale.UnitPrice;
+
 
             _context.Update(view.sale);
             _context.SaveChanges();
