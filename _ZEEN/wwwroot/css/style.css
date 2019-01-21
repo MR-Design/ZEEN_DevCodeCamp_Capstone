@@ -3,9 +3,13 @@
 
 
 body {
-    margin-top:0;
+    margin-top: 0;
     padding-top: 0%;
     padding-bottom: 5%;
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
 }
 
 /* Wrapping element */
@@ -89,10 +93,9 @@ color:#505962;
 }
 
 .home-inner {
-
-	background-image: url('img/landing.jpg');
-	opacity: 0.8;
-	filter: alpha(opacity=50);
+    background-image: url('../images/zeen.jpg');
+    opacity: 0.8;
+    filter: alpha(opacity=50);
 }
 .caption {
 
@@ -204,7 +207,7 @@ img.example-image {
 		border-color: rgb(42, 42, 42);
 	}
 a {
-		color: rgb(202, 15, 15);
+		color: rgba(0, 0, 0, 0.9);
 		text-decoration: none;
 		background-color: transparent;
 		-webkit-text-decoration-skip: objects;
@@ -235,7 +238,30 @@ a {
 	background-color: #00B3FF;
 }
 
+/*============= TESTIMONIALS SECTION =============*/
 
+.card {
+    margin: 0 1rem;
+    border-radius: 0;
+}
+
+.card-img-top {
+    border-radius: 0;
+}
+
+.card h4 {
+    font-weight: 700;
+}
+
+.card h5 {
+    color: #00B3FF;
+}
+
+.card p {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 1rem 0 1.5rem;
+}
 /*============= CONTACT SECTION =============*/
 
 .footer .row {
@@ -317,3 +343,6 @@ html {
     position: relative;
     min-height: 100%;
 }
+
+
+
