@@ -17,6 +17,7 @@ using _ZEEN.Models;
 using Stripe;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace _ZEEN
 {
@@ -51,6 +52,7 @@ namespace _ZEEN
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddEasyQuery();
             services.AddSignalR();
+          
 
         }
 

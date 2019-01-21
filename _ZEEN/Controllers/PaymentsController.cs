@@ -73,6 +73,10 @@ namespace _ZEEN.Controllers
                 Currency = "usd",
                 CustomerId = customer.Id
             });
+
+           
+
+
             var userInDb = _context.Sales.Where(a => a.Id == id).Single();
             userInDb.BuyerID = User.Identity.GetUserId();
             var StatusInDb = _context.Sales.Where(a => a.Id == id).Single();

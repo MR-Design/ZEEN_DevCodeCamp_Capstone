@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using _ZEEN.Models.ViewModels;
 using _ZEEN.Utility;
+using Stripe;
 
 namespace _ZEEN.Controllers
 {
@@ -43,6 +44,17 @@ public class RegularUsersController : Controller
                 user = new RegularUser()
 
             };
+
+            //var options = new PayoutCreateOptions
+            //{
+            //    Amount = 5000,
+            //    Currency = "usd",
+            //};
+            //var service = new PayoutService();
+
+
+            //Payout payout = service.Create(options);
+
             var currentUser = User.Identity.GetUserId();
             RegularUser RegularUsers = _context.RegularUsers.Where(s => s.ApplicationUserId == currentUser).SingleOrDefault();
             view.user = RegularUsers;

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.2.1" />
     <PackageReference Include="dropzone" Version="4.2.0" />
     <PackageReference Include="jQuery.filedrop" Version="1.0.1" />
     <PackageReference Include="Korzh.DbExport" Version="4.2.0" />
@@ -17,6 +18,7 @@
     <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
+    <PackageReference Include="PayPal" Version="1.9.1" />
     <PackageReference Include="Stripe.net" Version="21.5.0" />
   </ItemGroup>
 
