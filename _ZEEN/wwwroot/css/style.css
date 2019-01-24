@@ -161,11 +161,24 @@ color:#505962;
     border-radius: .5rem;
     border: 1.5px solid #7efaff;
 }
+.mt-6 {
+    margin-top: 5rem !important;
+}
 .card:hover {
   background-color:#7efaff;
   opacity:.75;
 }
 
+.no-hover:hover {
+    background-color: transparent !important;
+    opacity: .9;
+    border: .5px solid #ebfffb;
+    border-radius: 0;
+}
+.no-hover {
+    border: .5px solid #ebfffb;
+    border-radius: 0;
+}
 
 .card-img-top {
     border-radius: 0;
@@ -288,6 +301,16 @@ img.example-image {
         color: #343A40;
         background-color: transparent;
         border-color: #343A40;
+    }
+
+.btn-zeen-r {
+    color: #13abc4;
+    background-color: transparent;
+}
+
+    .btn-zeen-r:hover {
+        color: #fff;
+        background-color: #13abc4;
     }
 
 a {

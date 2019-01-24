@@ -3,13 +3,14 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="container body-content">
-    <div class="col-md-6">
+<div class="body-content">
+    <div class="row">
+        <div class="col-md-6">
 
-        <div class="card mb-3">
+            <div class="card mb-3 mt-6 no-hover"style="margin-top:10rem !important;">
 
-            <img class="img-responsive" style="height: 350px; width: 100%; display: block;" src="@Html.DisplayFor(model => model.sale.Image)" alt="Card image">
-          
+                <img class="img-responsive" style="height: 350px; width: 100%; display: block;" src="@Html.DisplayFor(model => model.sale.Image)" alt="Card image">
+
                 <div class="card-body">
                     <strong style="width:100%;">
                         <i class="far fa-thumbs-up"></i>
@@ -19,98 +20,103 @@
 
                             <a class="fb-comments" data-href="http://localhost:50489" data-width="100%" data-numposts="5"></a>
                         </span>
-                      
 
 
                     </strong>
                 </div>
-            
-
-        </div>
-
-    </div>
-
-    <div class="col-md-6">
-
-        <h6 class="card-title">
-            <a style="color:black" asp-action="Profiles" asp-controller="RegularUsers" asp-route-id="@Model.user.ApplicationUserId"> Posted by @Html.DisplayFor(model => model.user.UserName)</a>
-            <img class="img-circle" style="height: 50px; width: 50px; display: block;" src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Card image">
-
-        </h6>
-        <div class="card border-secondary" style="max-width: 40rem;">
-            <div class="card-body">
-                <h3 class="card-title">
-                    @Html.DisplayFor(model => model.sale.Detail)
-                </h3>
-                <p class="card-text">
-                    @Html.DisplayFor(model => model.sale.Discription)
-                </p>
-                <p class="card-text">
-                    <span style="font-weight:bold;"> @Html.DisplayFor(model => model.sale.Brand)</span> | For @Html.DisplayFor(model => model.sale.Gender)
-                </p>
-
-                <h3 class="card-link" style="font-weight:900;">
-                    $ @Html.DisplayFor(Model => Model.sale.UnitPrice)
-                </h3>
-
-                <h5 class="card-link" style="font-weight:900;">
-                    @Html.DisplayNameFor(model => model.sale.Size)
-
-                    <button class="btn btn-default"> @Html.DisplayFor(Model => Model.sale.Size)</button>
 
 
-                </h5>
             </div>
-            <a class="btn" style="color:#ffffff; background-color:gray;" asp-action="Payment" asp-controller="Payments" asp-route-id="@Model.sale.Id"> Buy Now</a>
 
         </div>
 
+        <div class="col-md-6 mt-6 ">
+
+            
+            <div class="card no-hover" style="max-width: 40rem;">
+                <div class="container text-center">
+                    <a asp-action="Profiles" asp-controller="RegularUsers" asp-route-id="@Model.user.ApplicationUserId"> <span class="text-dark">@Html.DisplayFor(model => model.user.UserName)</span> </a>
+                    <img class="img-responsive rounded-circle" style="height: 50px; width: 50px; display:block; margin:auto;" src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Card image">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        @Html.DisplayFor(model => model.sale.Detail)
+                    </h3>
+                    <p class="card-text">
+                        @Html.DisplayFor(model => model.sale.Discription)
+                    </p>
+                    <p class="card-text">
+                        <span style="font-weight:bold;"> @Html.DisplayFor(model => model.sale.Brand)</span> | For @Html.DisplayFor(model => model.sale.Gender)
+                    </p>
+
+                    <h3 class="card-link" style="font-weight:900;">
+                        $ @Html.DisplayFor(Model => Model.sale.UnitPrice)
+                    </h3>
+
+                    <span class="card-link" style="font-weight:900;">
+                        @Html.DisplayNameFor(model => model.sale.Size)
+
+                        <button class="btn btn-zeen no-hover"> @Html.DisplayFor(Model => Model.sale.Size)</button>
+
+
+                    </span>
+                </div>
+
+                <a class="btn btn-zeen-r" asp-action="Payment" asp-controller="Payments" asp-route-id="@Model.sale.Id"> Buy Now </a>
+
+            </div>
+
+        </div>
     </div>
+
 </div>
 
-@*Show this only to User who posted
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-action="Index">Home</a>
-    </div>*@
-<style>
-    .body-content {
-        margin-top: 2.5%;
-    }
+    @*Show this only to User who posted
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Index">Home</a>
+        </div>*@
+    <style>
+        .body-content {
+            margin-right: 5%;
+            margin-left: 5%;
+            margin-bottom:10%;
+        }
 
-    .card-body {
-        margin-top: 5%;
-    }
+        /*.card-body {
+            margin-top: 5%;
+        }
 
-    .far {
-        font-size:3rem; 
-        padding-right:1rem;
-    }
-    .far:hover {
-        font-size: 3rem;
-        padding-right: 1rem;
-        cursor:pointer;
-    }
-</style>
+        .far {
+            font-size: 3rem;
+            padding-right: 1rem;
+        }
 
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<div id="fb-root"></div>
-<script>
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=163240460893585&autoLogAppEvents=1';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+            .far:hover {
+                font-size: 3rem;
+                padding-right: 1rem;
+                cursor: pointer;*/
+         
+    </style>
 
-<div id="fb-root"></div>
-<script>
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=163240460893585&autoLogAppEvents=1';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=163240460893585&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=163240460893585&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
