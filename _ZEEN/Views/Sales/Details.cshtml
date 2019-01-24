@@ -42,7 +42,7 @@
                     <h3 class="card-title">
                         @Html.DisplayFor(model => model.sale.Detail)
                     </h3>
-                    <p class="card-text">
+                    <p class="card-text text-zeen-dark">
                         @Html.DisplayFor(model => model.sale.Discription)
                     </p>
                     <p class="card-text">
@@ -62,7 +62,7 @@
                     </span>
                 </div>
 
-                <a class="btn btn-zeen-r" asp-action="Payment" asp-controller="Payments" asp-route-id="@Model.sale.Id"> Buy Now </a>
+                <a class="btn btn-zeen-r" asp-action="Payment" asp-controller="Payments" asp-route-id="@Model.sale.Id">  Buy Now </a>
 
             </div>
 

@@ -28,8 +28,22 @@ body {
 .text-dark{
 color:#505962;
 }
-.text-mu{
-	color:#fee500;	
+
+.text-zeen {
+    color: #13abc4;
+    font-size:1rem;
+    font-weight:900;
+}
+
+.text-zeen-dark {
+    color: #505962;
+    font-size: 1rem;
+    font-weight: 700;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.text-mu {
+    color: #fee500;
 }
 .text-mu-home{
 	color: rgba(202, 15, 15, .9)!important; 	
@@ -259,10 +273,18 @@ h3.heading {
 	padding-top: 8rem;
 
 }
-/*============= PORTFOLIO SECTION =============*/
 
+hr.socket {
+    width: 100%;
+    border-top: .2rem solid #00B3FF;
+}
+.margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+/*============= PORTFOLIO SECTION =============*/
 .padding {
-	padding: 3rem 0;
+    padding: 3rem 0;
 }
 
 .no-padding [class*=col-] {

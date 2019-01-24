@@ -6,59 +6,65 @@
 
 
 
-<div class="container-fluid text-center">
+<div class="container-fluid ">
+    <div class="col-md-6 margin-auto">
 
-    <hr />
+        <div class="row">
 
-    <div class="row">
-        <img src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Avatar">
+            <img class="rounded-circle border-white margin-auto" src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Avatar">
+            <hr class="socket" />
 
-        <h4 class="lead" style="padding-top:5px;">
-            @Html.DisplayFor(model => model.user.UserName)  <br />
-            <hr />
-            Balance : $@Html.DisplayFor(model => model.user.Wallet)
+            <div class="container text-zeen" style="padding-top:.5rem;">
+
+                @Html.DisplayFor(model => model.user.UserName)  <br />
+                Balance : $@Html.DisplayFor(model => model.user.Wallet)
 
 
-        </h4>
+            </div>
+        </div>
+
+        <hr class="socket" />
+
+        <div class="row">
+
+            <div class="container text-zeen-dark">
+                @Html.DisplayNameFor(model => model.user.FirstName):
+                @Html.DisplayFor(model => model.user.FirstName)<br />
+
+
+
+                @Html.DisplayNameFor(model => model.user.LastName): @Html.DisplayFor(model => model.user.LastName)<br />
+                Gender: @Html.DisplayFor(model => model.user.Gender)<br />
+
+                @Html.DisplayNameFor(model => model.user.Bio): @Html.DisplayFor(model => model.user.Bio)<br />
+                Website: @Html.DisplayFor(model => model.user.WebSite)<br />
+
+                Address: @Html.DisplayFor(model => model.user.Street)
+
+                @Html.DisplayFor(model => model.user.City),
+
+                @Html.DisplayFor(model => model.user.State)
+
+                @Html.DisplayFor(model => model.user.ZipCode)
+                <br />
+                <br />
+            </div>
+
+        </div>
+        <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-zeen">Edit Profile</a>
+
     </div>
-
-   
-    <div class="row" style="font-size:15px; color:black;">
-
-        @Html.DisplayNameFor(model => model.user.FirstName)
-        @Html.DisplayFor(model => model.user.FirstName)<br /><br />
-
-
-        @Html.DisplayNameFor(model => model.user.LastName): @Html.DisplayFor(model => model.user.LastName)<br /><br />
-        Gender: @Html.DisplayFor(model => model.user.Gender)<br /><br />
-
-        @Html.DisplayNameFor(model => model.user.Bio): @Html.DisplayFor(model => model.user.Bio)<br /><br />
-        Website: @Html.DisplayFor(model => model.user.WebSite)<br /><br />
-
-        Address: @Html.DisplayFor(model => model.user.Street)
-
-        @Html.DisplayFor(model => model.user.City),
-
-        @Html.DisplayFor(model => model.user.State)
-
-        @Html.DisplayFor(model => model.user.ZipCode)
-        <br />
-        <br />
-
-        <a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-info">Edit Profile</a>
-
-    </div>
-    
 </div>
 
 
 
 <style>
-
-    img {
-        border-radius: 50%;
-        width: 200px;
-        height: 200px;
-        text-align: center;
+    img{
+        width:200px;
+        height:200px;
     }
+    .socket{
+        opacity:.2;
+    }
+  
 </style>
