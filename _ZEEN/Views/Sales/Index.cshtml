@@ -5,44 +5,37 @@
 }
 
 
-    <h5 class="right">
-
-        <a style="color:black; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:15px;" asp-action="Create" asp-controller="Sales">Sell on <strong>ZEEN </strong></a>
-    </h5>
-
-    <nav class="navbar navbar-default">
 
 
-        <form asp-controller="Sales" asp-action="Index" class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" name="SearchString" placeholder="Search Listings">
-            </div>
-            <button type="submit" class="btn btn-default">Search</button>
+<nav class="search navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:black; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:15px;" asp-action="Create" asp-controller="Sales">Sell on <strong>ZEEN </strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-
-
-            <div class="btn-group">
-                <a class="btn btn-default dropdown-toggle bottom" data-toggle="dropdown" aria-expanded="false">
-                    All
-                    <span class="caret"></span>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Brands <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Category</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Sales & Events
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a asp-controller="Sales" asp-action="Index" name="Men"> Men</a></li>
-                    <li><a asp-controller="Sales" asp-action="Index" name="Woman"> Woman</a></li>
-                    <li><a asp-controller="Sales" asp-action="Index" name="Clothing"> Clothing</a></li>
-                    <li><a asp-controller="Sales" asp-action="Index" name="Shoes"> Shoes</a></li>
-                    <li><a asp-controller="Sales" asp-action="Index" name="Jewelry"> Jewelry</a></li>
-                    <li><a asp-controller="Sales" asp-action="Index" name="Watches"> Watches</a></li>
-
-                </ul>
-            </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <form asp-controller="Sales" asp-action="Index" role="search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" name="SearchString" placeholder="Search Listings">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
-
-
-
-
-
-    </nav>
+    </div>
+</nav>
 
 
 
@@ -51,46 +44,42 @@
 
 
 
-    <div class="body body-content">
+<div class="container">
+
+    <div class="row">
         @foreach (var item in Model.sales)
         {
-            <div class="col-xs-6 col-sm-4">
+            <div class="col-md-4">
 
 
 
-                <div class="card mb-3">
+                <div class="card">
+
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <img class="img-fluid" style="height: 200px; width: 100%; display: block;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image">
+                    </a>
+
                     <a asp-action="Details" asp-route-id="@item.Id" style="color:black">
 
-                        <h3 class="card-header">
-                            @Html.DisplayFor(modelItem => item.Detail)
-                        </h3>
 
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
+                            <h6 class="card-title">
+                                @Html.DisplayFor(modelItem => item.Detail)
+
+                            </h6>
                         </div>
                     </a>
-                    <a asp-action="Details" asp-route-id="@item.Id">
-                        <img style="height: 200px; width: 100%; display: block;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image">
-                    </a>
                     <div class="card-body">
-                        <a class="card-link" style="font-weight:900;">
-                            $ @Html.DisplayFor(modelItem => item.UnitPrice)
-                        </a>
                         <a class="card-link">@Html.DisplayFor(modelItem => item.Gender)</a>
                         <a class="card-link">
                             @Html.DisplayNameFor(model => model.sale.Size)
                             @Html.DisplayFor(modelItem => item.Size)
-                        </a> |
+                        </a>
                         <a class="card-link">@Html.DisplayFor(modelItem => item.Brand)</a>
-
+                        <h6 class="card-title">
+                            $ @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </h6>
                     </div>
-                    <div class="card-footer text-muted">
-                        
-                    
-                        Posted X Days ago
-                    </div>
-
-
                 </div>
 
             </div>
@@ -99,3 +88,8 @@
         }
 
     </div>
+</div>
+
+<script>
+
+</script>

@@ -13,8 +13,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/style.css">
-
+        <link href="~/css/style.css" rel="stylesheet" />
 
     </environment>
     <environment exclude="Development">
@@ -39,11 +38,21 @@
                 <span class="custom-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
 
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li><a asp-area="" asp-controller="Sales" asp-action="Index">Salles</a></li>
-                    <li><a asp-area="" asp-controller="Sales" asp-action="Orders">Orders History</a></li>
-                    <li><a asp-area="" asp-controller="Sales" asp-action="ManageOrders">Manage Orders</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Sales" asp-action="Index">Salles</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Sales" asp-action="Orders">Orders History</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Sales" asp-action="ManageOrders">Manage Orders</a>
+                    </li>
+
                 </ul>
                 <partial name="_LoginPartial" />
 
@@ -56,7 +65,7 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="body-content">
+    <div class="body-content text-center">
         @RenderBody()
 
 
@@ -117,6 +126,42 @@
     </environment>
     @RenderSection("Scripts", required: false)
 
+    @*<style>
+        .navbar {
+            padding: .6rem 1rem;
+            text-transform: uppercase;
+            font-size: .9rem;
+            font-weight: 700;
+            letter-spacing: .1rem;
+            background-color: #e8f1f5 !important;
+        }
+
+
+        .navbar-nav .nav-link {
+            color: #004a7c;
+            padding-top: .8rem;
+        }
+
+            .navbar-nav .nav-link.active,
+            .navbar-nav .nav-link:hover {
+                color: #000 !important;
+            }
+
+        .svg-inline--fa.fa-w-14 {
+            color: white;
+            font-size: 1.6rem;
+        }
+
+        .navbar-nav li {
+            padding-right: .8rem;
+        }
+
+        .footer .row {
+            background-color: #005691;
+            padding: 1rem 2rem 3rem;
+            color: white;
+        }
+    </style>*@
 </body>
 
 </html>

@@ -15,8 +15,8 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: .5%;
-    padding-right: .5%;
+    padding-left: 0%;
+    padding-right: 0%;
 }
 .bg-white{
 	background-color:#fff;	
@@ -45,6 +45,14 @@ color:#505962;
 	content: "";
 	display: block;
 }
+.btn {
+    border-width: medium;
+    border-radius: 0;
+    padding: .5rem 1.1rem;
+    font-size: .9rem;
+    text-transform: uppercase;
+}
+
 
 /*--- Extra Bootstrap Column Padding --*/
 
@@ -64,27 +72,57 @@ color:#505962;
     font-size: .9rem;
     font-weight: 700;
     letter-spacing: .1rem;
-    background-color: rgba(224, 224, 224, 0.9) !important;
+    background-color: #13abc4 !important;
 }
-.navbar-brand img {
+.search {
+    padding: .6rem 1rem;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    background-color: #7efaff !important;
+}
+
+
+.navbar-nav .nav-link {
+    color: #004a7c;
+    padding-top: .8rem;
+}
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: #000 !important;
+    }
+
+.svg-inline--fa.fa-w-14 {
+    color: white;
+    font-size: 1.6rem;
+}
+
+.navbar-nav li {
+    padding-right: .8rem;
+}
+
+-brand img {
 	height: 2.5rem;
 }
 .navbar-nav .nav-link {
-    color: #505962;
+    color: #343A40;
     padding-top: .8rem;
 }
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link:hover {
-	color: rgba(57, 63, 70, .9)!important;
-	
-}
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: #ebfffb !important;
+    }
 .svg-inline--fa.fa-w-14 {
-	color: white;
-	font-size: 1.6rem;
+    color: #ebfffb;
+    font-size: 1.6rem;
 }
 .navbar-nav li {
 	padding-right: .8rem;
 }
+
+
 
 /*============= LANDING PAGE =============*/
 .landing-brand img {
@@ -112,20 +150,54 @@ color:#505962;
 	text-transform: uppercase;
 	padding-bottom: 2rem;
 }
-.btn {
-	border-width: medium;
-	border-radius: 0;
-	padding: .5rem 1.1rem;
-	font-size: .9rem;
-	text-transform: uppercase;
+
+
+
+
+/*============= TESTIMONIALS SECTION =============*/
+
+.card {
+    margin: 5rem 1rem 0rem 1rem !important;
+    border-radius: .5rem;
+    border: 1.5px solid #7efaff;
+}
+.card:hover {
+  background-color:#7efaff;
+  opacity:.75;
 }
 
-/*============= ABOUT SECTION =============*/
 
+.card-img-top {
+    border-radius: 0;
+}
+
+.card h6 {
+    font-weight: 700;
+    color:#505962;
+
+}
+
+
+.card h5 {
+    color: #00B3FF !important;
+}
+
+.card p {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 1rem 0 1.5rem;
+}
+.card a {
+    color: #004a7c;
+}
+.card a:hover {
+  text-decoration: none !important;
+ }
+/*============= ABOUT SECTION =============*/
 .jumbotron {
-	margin-bottom: 0;
-	border-radius: 0;
-	padding: 3rem 0 3rem;
+    margin-bottom: 0;
+    border-radius: 0;
+    padding: 3rem 0 3rem;
 }
 .narrow {
 	width: 85%;
@@ -197,15 +269,27 @@ img.example-image {
 	overflow: hidden;
 }
 .btn-GetInTouch {
-		color: rgb(202, 15, 15);
-		background-color: transparent;
-		border-color: rgb(202, 15, 15);
-	}
-	.btn-GetInTouch:hover {
-		color: #fff;
-		background-color: rgb(42, 42, 42);
-		border-color: rgb(42, 42, 42);
-	}
+    color: #ebfffb;
+    background-color: transparent;
+    border-color: #ebfffb;
+}
+    .btn-GetInTouch:hover {
+        color: #343A40;
+        background-color: transparent;
+        border-color: #343A40;
+    }
+.btn-zeen {
+    color: #13abc4;
+    background-color: transparent;
+    border-color: #13abc4;
+}
+
+    .btn-zeen:hover {
+        color: #343A40;
+        background-color: transparent;
+        border-color: #343A40;
+    }
+
 a {
 		color: rgba(0, 0, 0, 0.9);
 		text-decoration: none;
@@ -215,59 +299,14 @@ a {
 /*============= Skills SECTION =============*/
 
 
-.card {
-	margin: 0 1rem;
-	border-radius: 0;
-	width: 50%;
-}
-.card-img-top {
-	border-radius: 0;
-}
-.card h4 {
-	font-weight: 700;
-}
-.card h5 {
-	color: #00B3FF;
-}
-.card p {
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	padding: 1rem;
-	margin: 1rem 0 1.5rem;
-}
-.row{
-	background-color: #00B3FF;
-}
 
-/*============= TESTIMONIALS SECTION =============*/
 
-.card {
-    margin: 0 1rem;
-    border-radius: 0;
-}
 
-.card-img-top {
-    border-radius: 0;
-}
-
-.card h4 {
-    font-weight: 700;
-}
-
-.card h5 {
-    color: #00B3FF;
-}
-
-.card p {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    margin: 1rem 0 1.5rem;
-}
-/*============= CONTACT SECTION =============*/
 
 .footer .row {
-	background-color: rgb(42, 42, 42);
-	padding: 1rem 2rem 3rem;
-	color: white;
+    background-color: #13abc4;
+    padding: 1rem 2rem 3rem;
+    color: white;
 }
 .footer img {
 	height: 2rem;
