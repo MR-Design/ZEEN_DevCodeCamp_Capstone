@@ -6,124 +6,59 @@
 
 
 
+<div class="container-fluid ">
+    <div class="col-md-6 margin-auto">
 
-<div>
+        <div class="row">
 
+            <img class="rounded-circle border-white margin-auto" src="@Html.DisplayFor(model => model.user.AvatarImage)" alt="Avatar">
+            <hr class="socket" />
 
+            <div class="container text-zeen" style="padding-top:.5rem;">
 
-    <hr />
-    <img src="https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Avatar">
-    <style>
+                @Html.DisplayFor(model => model.user.UserName)  <br />
+                Total Money made on the App : $@Html.DisplayFor(model => model.user.TotalMoneyMade)
+                <form asp-action="Follow" asp-controller="RegularUsers">
+                    <input type="hidden" asp-for="follower.To" value="@Model.user.ApplicationUserId" />
+                    <input type="hidden" asp-for="follower.Sender" value="@Model.user.UserName" />
 
-        img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-        }
-    </style>
+                    <input type="submit" value="Follow" class="btn btn-zeen-r" />
+                </form>  @ViewData["Followers"]
 
+            </div>
+        </div>
 
+        <hr class="socket" />
 
-    <dl class="dl-horizontal">
+        <div class="row">
 
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.user.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.UserName)
-        </dd>
-        <dt>
-            Total Money made on the App 
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.TotalMoneyMade)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.Gender)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.Gender)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.Bio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.Bio)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.WebSite)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.WebSite)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.Street)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.Street)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.City)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.City)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.State)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.State)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.user.ZipCode)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.user.ZipCode)
-        </dd>
-        <dt>
-            <span> Number of followers</span>
-        </dt>
-        <dd>
-            @ViewData["Followers"]
-        </dd>
-    </dl>
-</div>
-
-<div>
+            <div class="container text-zeen-dark">
+                @Html.DisplayNameFor(model => model.user.FirstName):
+                @Html.DisplayFor(model => model.user.FirstName)<br />
 
 
-    @*<a asp-action="EditProfile" asp-controller="RegularUsers" class="btn btn-default">Edit</a>*@
-</div>
-<div class="form-group">
-    <form asp-action="Follow" asp-controller="RegularUsers">
-        <input type="hidden" asp-for="follower.To" value="@Model.user.ApplicationUserId" />
-        <input type="hidden" asp-for="follower.Sender" value="@Model.user.UserName" />
 
-        <input type="submit" value="Follow" class="btn btn-primary" />
-    </form>
+                @Html.DisplayNameFor(model => model.user.LastName): @Html.DisplayFor(model => model.user.LastName)<br />
+                Gender: @Html.DisplayFor(model => model.user.Gender)<br />
 
-</div>
+                @Html.DisplayNameFor(model => model.user.Bio): @Html.DisplayFor(model => model.user.Bio)<br />
+                Website: @Html.DisplayFor(model => model.user.WebSite)<br />
+
+                Address: @Html.DisplayFor(model => model.user.Street)
+
+                @Html.DisplayFor(model => model.user.City),
+
+                @Html.DisplayFor(model => model.user.State)
+
+                @Html.DisplayFor(model => model.user.ZipCode)<br />
 
 
-<hr />
-<span>Contact : <strong>@Html.DisplayFor(model => model.user.UserName)</strong> </span>
 
-<div class="container body-content">
-    <div class="col-xs-6 col-md-6">
+            </div>
+
+        </div>
+
+
         <form asp-action="Profiles" asp-controller="RegularUsers">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <br />
@@ -132,10 +67,10 @@
 
             <div class="container-fluid">
 
-                <textarea class="form-control" rows="5" style="color:dimgray; background-color:snow;" asp-for="@Model.message.Message"> </textarea>
+                <textarea class="form-control text-center" rows="5" style="color:#808080; background-color:rgba(126, 250, 255,.3);" asp-for="@Model.message.Message"> </textarea>
                 <span asp-validation-for="@Model.message.Message" class="text-danger"></span>
                 <br />
-                <span class="help-block">@DateTime.Now</span>
+                <span class="help-block" style="display:none">@DateTime.Now</span>
 
             </div>
             <div class="form-group">
@@ -143,38 +78,22 @@
                 <input type="hidden" asp-for="message.Sender" value="@Model.user.UserName" />
                 <input type="hidden" asp-for="message.DateSent" value="@DateTime.Now" />
 
-                <input type="submit" value="Send Message" class="btn btn-primary" />
+                <input type="submit" value="Send Message" class="btn btn-zeen" />
             </div>
         </form>
     </div>
 </div>
 
 
+<style>
+    img {
+        width: 200px;
+        height: 200px;
+    }
 
-
-
-@*<div class="container">
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                @Html.DisplayFor(model => model.user.UserName)<input type="text" id="userInput" />
-                <br />
-                Message<input type="text" id="messageInput" />
-                <input type="button" id="sendButton" value="Send Message" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <hr />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                <ul id="messagesList"></ul>
-            </div>
-        </div>
-    </div>*@
+    .socket {
+        opacity: .2;
+    }
+</style>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

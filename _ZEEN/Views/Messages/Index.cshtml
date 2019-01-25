@@ -5,52 +5,36 @@
 }
 
 
-
-
-
-
-<br />
-<br />
-
-    @foreach (var item in Model.messages)
+@foreach (var item in Model.messages)
+{
+    //int count = 0;
+    if (Model.messages.Count > 0)
     {
-        //int count = 0;
-        if (Model.messages.Count > 0)
-        {
+<div class="row  text-zeen-dark mt-6">
+    <div class="col-md-6 margin-auto">
 
-            <fieldset class="form-group" disabled >
-
-                <span class="help-block">Sent From @Html.DisplayFor(modelItem => item.Sender)</span>
-
-                <label for="textArea" class="col-lg-2 control-label ">
-                    @Html.DisplayNameFor(model => model.message.Message)
-                </label>
-                <div class="col-lg-10">
-                    <textarea class="form-control" rows="3" id="textArea"> @Html.DisplayFor(modelItem => item.Message)</textarea>
-                    <span class="help-block">Sent On @Html.DisplayFor(modelItem => item.DateSent)</span>
-                </div>
-            </fieldset>
+        <span class="">Sent From @Html.DisplayFor(modelItem => item.Sender)</span>
+        <fieldset class="col-md-5 margin-auto mt-1" disabled>
+            <textarea class="form-control" rows="5" id="textArea"style="color:#808080; background-color:rgba(126, 250, 255,.3);"> @Html.DisplayFor(modelItem => item.Message)</textarea>
+            <span class="help-block mt-1">Sent On @Html.DisplayFor(modelItem => item.DateSent)</span>
+        </fieldset>
 
 
-            <tr>
+        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger mt-1">Delete</a>
+        <hr class="socket" style="width:20%; opacity:0.1;" />
 
-
-                <td>
-                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-
-        }
-        else
-        {
-            <div class="form-group">
-
-                <div class="col-lg-10">
-                    No Message
-                </div>
-            </div>
-        }
+    </div>
+</div>
     }
+    else
+    {
+        <div class="container margin-auto">
+
+            <div class="col-md-6">
+                No Message
+            </div>
+        </div>
+    }
+}
 
 

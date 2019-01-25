@@ -8,14 +8,13 @@
 
 
   
-<div class="container body-content">
-   
-        <div class="col-md-6">
+<div class="container body-content mt-6">
 
-            <hr />
+    @foreach (var item in Model.users)
+    {
+        <div class="row text-zeen-dark">
+            <div class="col-md-6 margin-auto mt-6">
 
-            @foreach (var item in Model.users)
-            {
                 <div>
                     <strong>Please Ship it To </strong> : @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)
                 </div>
@@ -33,40 +32,34 @@
 
 
                 </div>
-            }
-
-            @foreach (var item in Model.sales)
-            {
-
-                <div class="Row">
-                    @Html.DisplayFor(modelItem => item.Detail)<br />
-
-                    <span> Price : $  </span>  @Html.DisplayFor(modelItem => item.UnitPrice)
-
-
-                    <img style="height: 100px; width: 30%; display: block;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image">
-                </div>
-                <br />
-                <div class="form-group">
-                    <a asp-action="Ship" asp-route-id="@item.Id" class="btn btn-info">Ship Item</a>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Update</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Remove</a>
-
-                </div>
-                <hr>
-            }
-
-
-
-
-
-
-
-
-
+            </div>
         </div>
-    
-  
+
+
+    }
+
+    @foreach (var item in Model.sales)
+    {
+
+        <div class="Row margin-auto text-zeen-dark">
+            <div class="col-md-6 margin-auto">
+                @Html.DisplayFor(modelItem => item.Detail)<br />
+
+                <span> Price : $  </span>  @Html.DisplayFor(modelItem => item.UnitPrice)
+
+                <div class="container"> <img class="d-block mx-auto mt-4" style="height: 150px; width: 50%;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image"> </div>               
+            </div>
+            <br />
+            <div class="form-group">
+                <a asp-action="Ship" asp-route-id="@item.Id" class="btn btn-info">Ship Item</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Update</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Remove</a>
+
+            </div>
+            <hr class="socket" style="width:20%; opacity:.5;">
+        </div>
+
+    }
 
 </div>
-
+   

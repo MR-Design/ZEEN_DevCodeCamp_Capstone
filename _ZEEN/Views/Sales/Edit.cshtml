@@ -4,12 +4,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<p class="lead mt-6">Edit order</p>
 
-<h4>Sale</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<hr class="socket" style="width:10%"/>
+
+<div class="row mt-6">
+    <div class="col-md-4 m-xl-auto text-zeen-dark">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
@@ -61,17 +61,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input type="file" name="files" multiple />
+                <input type="file" class="btn btn-zeen-r" name="files" multiple />
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-zeen" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="text-zeen-dark">Back to Manage Orders</a>
 </div>
 
 @section Scripts {
